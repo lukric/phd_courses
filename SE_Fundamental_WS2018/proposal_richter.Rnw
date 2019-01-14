@@ -1,0 +1,27 @@
+\documentclass{article}
+
+\usepackage[ngerman,english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+\pagestyle{empty}
+% put Name on top
+\section*{Funding Agency / Program}
+
+\section*{Title + Acronym}
+
+\section*{Objective}
+
+\section*{Background}
+
+\section*{Expected Results}
+
+\section*{Phases of Work (Methods?)}
+
+\section*{Participating institutions}
+
+\section*{Expected Cost + Duration}
+
+
+\end{document}
