@@ -1,0 +1,447 @@
+\documentclass{beamer}
+
+%\setbeamertemplate{background}{\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{ages_background2.png}}
+
+\usepackage[ngerman,english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{comment}
+\usepackage{colortbl}
+
+\usepackage[backend = bibtex, natbib = true, style = numeric, sorting = none]{biblatex}
+\addbibresource{../../references/mybib.bib}
+
+\usetheme{Boadilla}
+
+\definecolor{ages}{RGB}{204,164,0}
+\usecolortheme[named=ages]{structure}
+
+\setbeamercovered{transparent}
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{footline}[frame number]
+
+\newcommand{\Sin}[1]{\sin\left(#1\right)}%
+\newcommand{\Cos}[1]{\cos\left(#1\right)}%
+\newcommand{\Log}[1]{\log\left(#1\right)}%
+
+\begin{document}
+\graphicspath{{../../chapters/figures/IPD/}, {../../chapters/figures/}}
+%\graphicspath{{D:/diss/chapters/figures/IPD/}} %{{\Sexpr{paste0(getwd(), "/chapters/figures/IPD/")}}} %{../figures/IPD/}
+%% initialize %%
+
+
+<<OPTIONS_LIBRARIES, cache = FALSE, echo = FALSE, message = FALSE, warning = FALSE, results = "hide">>=
+library("knitr")
+opts_chunk$set(concordance = TRUE, 
+               echo = FALSE,
+               tidy = FALSE,
+               autodep = TRUE,
+               cache = FALSE, 
+               message = FALSE, 
+               warning = FALSE,
+               size = 'scriptsize',
+               results = 'hide',
+               comment = NA, 
+               fig.width = 7,
+               fig.height = 7, 
+               out.width = '.7\\textwidth',
+               fig.show = 'hold'
+               ,dev = 'png'
+               ,dpi = 300)
+@
+
+<<init.IPD>>=
+end.date <- "2016/05"
+
+recode.subgroups <- matrix(data=c(
+  "PCV10", "PCV10 ST-IPD",
+  "PCV13", "PCV13 ST-IPD",
+  "nonPCV10", "Non PCV10 ST-IPD",
+  "nonPCV13", "Non PCV13 ST-IPD",
+  "PCV23", "PPV23 ST-IPD",
+  "nonPCV23", "Non PPV23 ST-IPD",
+  "PCV13non10", "3, 6A, 19A ST-IPD",
+  "st3", "3 ST-IPD",
+  "st6A", "6A ST-IPD",
+  "st19A", "19A ST-IPD",
+  "all", "total IPD",
+  "unk", "unk",
+  "PCV10NT", "PCV10NT",
+  "PCV13NT", "PCV13NT",
+  "PCV23non10", "PPV23 non PCV10 ST-IPD"
+), ncol = 2, byrow = TRUE)
+
+@
+
+<<table>>=
+library(xtable)
+ipd_table <- function(file, caption = NULL, label = NULL, fl.envir = "table", scalebox = getOption("xtable.scalebox", NULL)) {
+  a <- read.csv2(file, check.names = FALSE, stringsAsFactors = FALSE)
+  
+  for (i in 1:nrow(recode.subgroups)){
+    a[a[] == recode.subgroups[i,1]] <- paste0("\\multirow{ 2}{3cm}{",recode.subgroups[i,2],"\\vfil}")
+  }
+  
+  
+  b <- xtable(a, caption = caption, label = label)
+  align(b) <- paste0(c("l", "p{3cm}", "l", rep("r", ncol(a) - 2)), collapse = "")
+
+  print(b, include.rownames = F, caption.placement = "top", sanitize.text.function=function(x){x}, 
+        floating = TRUE, floating.environment = fl.envir, scalebox = scalebox) 
+}
+
+@
+
+
+%%%%
+\title{Statistical modelling in public health: segmented regression and methods to model low count data}
+\subtitle{Dr. School seminar, Summer 2017}
+\author{Lukas Richter}
+\date[]{\Sexpr{format(Sys.Date(), format = "%d.%m.%Y")}}
+
+\titlegraphic{
+  \includegraphics[width=2.0cm]{logo_ages}\hspace*{3cm}~%
+  \includegraphics[width=2.0cm]{logo_tugraz}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frame{
+  \titlepage
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Background}
+\begin{center}
+\begin{itemize}
+  \item Streptococcus pneumoniae-related infections:\\
+  among children main cause of
+  \begin{itemize}
+    \item meningitis
+    \item bacterial pneumonia
+    \item sepsis
+  \end{itemize}
+  \item 90 distinct pneumococcal serotypes
+  \item Only a small number account for invasive pneumococcal disease (IPD)
+  \item January 2012: pneumococcal conjugate vaccine introduced in the national childhood immunisation program:
+  \begin{itemize}
+    \item covering 10 serotypes (PCV10)
+    \item administered at 3rd, 5th and 12th month of life
+    \item funded
+  \end{itemize}  
+  \item Other vaccines: PCV13, PPV23
+\end{itemize}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Objective}
+\begin{block}{Objective}
+  Our aim was to evaluate direct and indirect longitudinal effects of introducing a 10-valent pneumococcal conjugate vaccine in the Austrian childhood immunization program in 2012 on the occurrence of invasive pneumococcal disease in the Austrian population.
+\end{block}
+\begin{center}
+\begin{itemize}
+  \item Analyse case-based data of confirmed IPD from 2009--\Sexpr{end.date}
+  \item Use information on age, date of diagnosis and serotype
+\end{itemize}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Datasources}
+Merged data from 4 sources:
+\begin{center}
+\begin{itemize}
+  \item National surveillance data on IPD, AGES Vienna
+  \item National reference laboratory for IPD, AGES, Graz
+  \item Surveillance-study on IPD among <5 yeras old operated by the Institute of Specific Prophylaxis and Tropical Medicine at the Medical University Vienna% and funded by a pharmaceutical company
+  \item Population data from Statistics Austria
+\end{itemize}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Method}
+\begin{center}
+\begin{itemize}
+  \item Transform data into time series
+  \item Interpret intervention as interruption of the time series\\
+  $\Rightarrow$ interrupted time series
+  \item Segmented regression allows detection of changes when comparing adjacent segments regarding
+  \begin{itemize}
+    \item the secular trend
+    \item one-time (sudden) changes
+    \item seasonal pattern
+  \end{itemize}
+  \item Apply a segmented negative binomial regression model
+  \begin{itemize}
+    \item monthly IPD incidence data
+    \item period: January 2009 -- May 2016
+    \item non-vaccine target groups, 5--49 and $\ge$50 years old
+    \item serotype subgroups (e.g. PCV10 serotypes)
+  \end{itemize}
+\end{itemize}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Study periods}
+\begin{center}
+\begin{figure}
+  \centering
+  \caption{Monthly incidence rate of total IPD per 100,000 population including model segments (arrows), Austria, 2009 -- \Sexpr{end.date}.}
+  \includegraphics[width=0.7\linewidth]{diss_segments.png} %[width=0.8\linewidth]
+  \label{fig:IPDsegments}
+\end{figure}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Definition of outcome}
+\begin{table}[]
+\centering
+\caption{Definition of the intervention and control outcome.}
+\begin{tabular}{lll}
+\hline
+Age-group  & Type of Outcome & Outcome definition \\\hline
+<5         & Intervention    & PCV10 ST-IPD       \\
+           & Control         & Non PCV10 ST-IPD   \\
+           & Control         & 3, 6A, 19A ST-IPD  \\\hline
+$\ge$50     & Intervention    & PCV10 ST-IPD       \\
+           & Control         & Non PCV10 ST-IPD   \\
+           & Control         & PPV23 ST-IPD       \\
+           & Control         & Non PPV23 ST-IPD   \\
+           & Control         & 3, 6A, 19A ST-IPD  \\\hline
+5--49      & Control         & PCV10 ST-IPD       \\
+           & Control         & Non PCV10 ST-IPD   \\\hline
+\end{tabular}
+\end{table}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Model}
+\begin{center}
+\begin{align*}
+\begin{split}
+\Log{Y_t}\, =&\, \Log{\text{pop}_t}+\beta_0+\beta_1\,\text{time}_t+\beta_2\,\Sin{\frac{2\,\pi\,t}{12}}+\beta_3\,\Cos{\frac{2\,\pi\,t}{12}} \\
+  +& \beta_4\,\text{vaccine}_t +\beta_5\,\text{time\_after\_vaccine}_t + \beta_6\,\sin_{\text{aftervaccine}} \left(\frac{2\,\pi\,t}{12}\right)\\
+  +&\,\beta_7\,\cos_{\text{aftervaccine}}\left(\frac{2\,\pi\,t}{12}\right)+\varepsilon_t.
+\end{split}
+\end{align*}
+
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Model Variables}
+\begin{center}
+\begin{itemize}
+  \item $Y_t$: number of IPD cases observed in month $t$
+  \item $\text{pop}_t$: population
+  \item $\text{time}_t$: time in months
+  \item $\text{vaccine}_t$: binary, indicates if month $t$ is assigned to the pre- ($\text{vaccine}_t=0$) or to the post-intervention period ($\text{vaccine}_t=1$) \\
+  $\Rightarrow$ $\text{vaccine}_t=1$ for $t>48$ and zero otherwise
+  \item $\text{time\_after\_vaccine}_t$: number of months elapsed in the post-intervention period \\
+  $\Rightarrow$ $\text{time\_after\_vaccine}_t=\text{time}_t-48$ for $t>48$ and zero otherwise
+  \item $\sin$, $\cos$, $\sin_{\text{aftervaccine}}$ and $\cos_{\text{aftervaccine}}$: seasonality in pre- and post-intervetion period
+\end{itemize}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\section{Results}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Results: Intervention outcome among $\ge$50 years old}
+\begin{center}
+\begin{figure}
+  \centering
+  \caption{Observed incidence/100,000 population, model fit with 95\% CI and secular trend of the segmented regression model including 2012 as transition period. \textit{PCV10 ST-IPD} among $\ge$50 years old, Austria, 2009 -- \Sexpr{end.date}.}
+  \includegraphics[width=0.7\linewidth]{age50-120_STPCV10.png}
+\end{figure}
+
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Results: Control outcome among $\ge$50 years old}
+\begin{center}
+\begin{figure}
+  \centering
+  \caption{Observed incidence/100,000 population, model fit with 95\% CI and secular trend of the segmented regression model including 2012 as transition period. \textit{Non PPV23 ST-IPD} among $\ge$50 years old, Austria, 2009 -- \Sexpr{end.date}.}
+  \includegraphics[width=0.7\linewidth]{age50-120_STnonPCV23.png}
+\end{figure}
+
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Results: Control outcome among 5--49 years old}
+\begin{center}
+\begin{figure}
+  \centering
+  \caption{Observed incidence/100,000 population, model fit with 95\% CI and secular trend of the segmented regression model including 2012 as transition period. \textit{PCV10 ST-IPD} among 5--49 years old, Austria, 2009 -- \Sexpr{end.date}.}
+  \includegraphics[width=0.7\linewidth]{age5-49_STPCV10.png}
+\end{figure}
+
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Summary}
+After the intervention:
+\begin{center}
+\begin{itemize}
+  \item \ge$50 years old
+  \begin{itemize}
+    \item decline in PCV10 serotypes (intervention outcome)
+    \item no secular change in other serotype groups (control outcomes)
+  \end{itemize}
+  \item 5--49 years old
+  \begin{itemize}
+    \item no changes in any serotype group (control outcomes)
+  \end{itemize}
+\end{itemize}
+\vspace{1cm}
+\begin{block}{Conclusion}
+  Indirect effect (herd immunity) among elders after intervention in <5 years old!
+\end{block}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{<5 years old}
+\begin{center}
+\begin{itemize}
+  \item Low number of cases, especially in subgroups (e.g. PCV10 ST-IPD)
+  \begin{itemize}
+    \item [$\Rightarrow$] segmented regression not applicable
+  \end{itemize}
+  \item \glqq{}Molecular\grqq{} laboratory method (PCR) introduced in 2013
+    \item Used for case finding and serotype determination
+  \begin{itemize}
+    \item [$\Rightarrow$] possibly more cases found and more serotypes determined
+    \item [$\Rightarrow$] comparison of pre- and post-intervention period not applicable
+    \item [$\Rightarrow$] case counts are still low
+  \end{itemize}
+  \item Use Zero-inflated and Hurdle models
+\end{itemize}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Method: Zero-inflated vs Hurdle}
+\begin{center}
+\begin{itemize}
+  \item Developed to model count data with high occurence of zero counts
+  \item Usable for Poisson and negative binomial distributed observations
+  \item Zeros are interpreted as
+  \begin{itemize}
+    \item structural zeros - due to some special structure of the data
+    \item sampling zeros - from sampling
+  \end{itemize}
+  \item Zero-inflated: structural and sampling zeros
+  \item Hurdle: structural zeros only
+%  \item Can be considered as finite mixture models (Cameron and Trivedi \cite{cameron1998})
+\end{itemize}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Model: Poisson version of zero-inflated and hurdle model}
+\begin{center}
+\begin{block}{Zero-inflated model}
+\begin{equation*}
+P(Y_i = y_i) = \begin{cases}
+    p_i + \left(1 - p_i\right) e^{-\mu_i},                     & \quad y_i = 0\\
+    \left(1 - p_i\right) \frac{e^{-\mu_i}\mu_i^{y_i}}{y_i!},   & \quad y_i > 0\\
+  \end{cases}
+\end{equation*}
+\end{block}
+
+\begin{block}{Hurdle model}
+\begin{equation*}
+P(Y_i = y_i) = \begin{cases}
+    p_i,                                                                               & \quad y_i = 0\\
+    \left(1 - p_i\right) \frac{e^{-\mu_i}\mu_i^{y_i}}{\left(1-e^{-\mu_i}\right)y_i!},  & \quad y_i > 0\\
+  \end{cases}
+\end{equation*}
+\end{block}
+\begin{itemize}
+  \item $p_i$: probability of being excess zero - often modelled using logistic regression
+\end{itemize}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Results using different models}
+\begin{center}
+<<table.out.post-intervention-PCV10, echo = FALSE, results = 'asis'>>=
+  ipd_table("../../chapters/figures/IPD/diss_molecular_PCV10.csv", 
+            caption = paste0("Model output (RRs and p-values) of different models using PCV10-ST IPD data including molecular typed cases on <5 years old, Austria, 2012 -- ", end.date), scalebox = 0.6)
+
+
+@
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Conclusion, <5 years old}
+\begin{center}
+\begin{itemize}
+  \item Poisson models fitted data better than their negative binomial counterparts\\
+  $\Rightarrow$ no significant overdispersion
+  \item Ordinary poisson regression explained \textit{Non PCV10 ST-IPD} and total IPD data best\\
+  $\Rightarrow$ no, or less excess zeros compared to \textit{PCV10-ST IPD}
+  \item PCV10 serotypes: secular decline (intervention outcome)
+  \item Non PCV10 serotypes: no changes (control outcome)
+\end{itemize}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{}
+\begin{center}
+\Huge{\textbf{Thank you!}}\\
+\Huge{\textbf{Any questions?}}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+\nocite{gillings1981, wagner_segmented_2002, penfold2013, rose2006, hu2011, cameron1998}
+
+\renewcommand*{\bibfont}{\scriptsize}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{References}
+\printbibliography
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}
+
+
