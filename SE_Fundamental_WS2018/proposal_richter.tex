@@ -1,4 +1,4 @@
-\documentclass{article}\usepackage[]{graphicx}\usepackage[]{color}
+\documentclass[11pt,a4paper]{article}\usepackage[]{graphicx}\usepackage[]{color}
 %% maxwidth is the original width if it is less than linewidth
 %% otherwise use linewidth (to make sure the graphics do not exceed the margin)
 \makeatletter
@@ -51,27 +51,47 @@
 \usepackage{alltt}
 
 \usepackage[ngerman,english]{babel}
+\usepackage{lmodern}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+
+\author{Lukas Richter}
+
+\lhead[Lukas Richter]{Lukas Richter}
+% \rhead[\thepage / \pageref{LastPage}]{\thepage / \pageref{LastPage}} % needs \usepackage{lastpage}
+\cfoot[]{}
+
+\setlength{\parindent}{0pt}
+%\onehalfspacing
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
-\pagestyle{empty}
+\pagestyle{fancy}
+
 % put Name on top
-\section*{Funding Agency / Program}
+\subsubsection*{Funding Agency / Program}
+1
 
-\section*{Title + Acronym}
+\subsubsection*{Title + Acronym}
+4
 
-\section*{Objective}
+\subsubsection*{Objective}
+5
 
-\section*{Background}
+\subsubsection*{Background}
+2
 
-\section*{Expected Results}
+\subsubsection*{Expected Results}
+3
 
-\section*{Phases of Work (Methods?)}
+\subsubsection*{Phases of Work (Methods?)}
+6
 
-\section*{Participating institutions}
+\subsubsection*{Participating institutions}
+7
 
-\section*{Expected Cost + Duration}
+\subsubsection*{Expected Cost + Duration}
+8
 
 
 \end{document}
