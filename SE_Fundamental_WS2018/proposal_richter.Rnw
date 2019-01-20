@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[10pt,a4paper]{article}
 
 \usepackage[ngerman,english]{babel}
 \usepackage{lmodern}
@@ -20,28 +20,33 @@
 
 % put Name on top
 \subsubsection*{Funding Agency / Program}
-1
+FFG Bridge
 
 \subsubsection*{Title + Acronym}
-4
+Pertussis Infection and Transmission in Austria (PITA)
 
 \subsubsection*{Objective}
-5
+We will investigate the Austria-specific drivers behind increasing whooping cough cases, such as vaccine failure and outdated vaccine schedules. Based on that, recommendations for interventions will be stated to protect the Austrian population from whooping cough resurgence.
 
 \subsubsection*{Background}
-2
+Incidence of pertussis or whooping cough, which is caused by the bacterium \textit{Bordetella pertussis}, is resurging in Austria in recent years. Vaccines are available for a long time and coverage in children is still high. Currently, in Austria, infants are vaccinated with an acellular vaccine (aP) in the 3rd, 5th and 12th month of their life. A booster dose is given at the age of 7. All vaccinations are financed through the Austrian national childhood immunisation programme. Afterwards a non-funded booster dose is recommended every 10 years. % Highest increase is observed among children of school age, but all age groups are affected by rising case counts.
 
-\subsubsection*{Expected Results}
-3
+\subsubsection*{Expected Results and Methods}
+Using whole genome sequencing together with mathematical modelling, we expect to get better insight in the increase of pertussis infection. The results may lead to an adaption of the current vaccination recommendations by the Austrian authorities. We do not expect to find an immunity of the circulating \textit{B. pertussis} bacterium against the commonly used vaccine in Austria.
 
-\subsubsection*{Phases of Work (Methods?)}
-6
+\subsubsection*{Phases of Work}
+Month 01-12: Collection of pertussis isolates and whole genome sequencing. Collection of surveillance data and merge with sequencing results.\\
+Month 12-15: Comparison of sequenced isolates and the currently available vaccine to identify possible mutations of \textit{B. pertussis}.\\
+Month 06-15: Development of a mathematical model to explain pertussis transmission and test effectiveness of interventions.\\
+Month 15-18: Report and publication writing. Prepare data for open access publication.
 
 \subsubsection*{Participating institutions}
-7
+AGES, Austrian Agency for Health and Food Safety (scientific)\\
+BASGK, Federal Ministry of Labour, Social Affairs, Health and Consumer Protection (stakeholder, vaccine programme)\\
+GSK, GlaxoSmithKline plc (stakeholder, vaccine producer)
 
 \subsubsection*{Expected Cost + Duration}
-8
+The duration of PITA is 18 months and it is planned to start in July 2019. Two PhD students (75\% time) will be employed at AGES, one for the laboratory work, and one for the modelling (=59,160.64 EUR x2; valorised with 2\% for the 2nd project year, exclusive overhead of 25\%). A sequencer is available at AGES and can be used free of charge for this project except for the material costs for sample preparation (17,500 EUR). Travel costs for travelling within Austria to collect samples (1,500 EUR). Total project costs are 166,901.59 EUR with an expected FFG funding quote: 60\% (GSK = large enterprise).
 
 
 \end{document}
