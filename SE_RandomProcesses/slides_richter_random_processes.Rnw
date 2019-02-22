@@ -1,0 +1,52 @@
+\documentclass{beamer}
+%\setbeamertemplate{background}{\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{ages_background2.png}}
+
+\usepackage[ngerman,english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Boadilla}
+
+\definecolor{ages}{RGB}{204,164,0}
+\usecolortheme[named=ages]{structure}
+
+\setbeamercovered{transparent}
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{footline}[frame number]
+
+\let\otp\titlepage
+\renewcommand{\titlepage}{\otp\addtocounter{framenumber}{-1}}
+
+\begin{document}
+%%%%
+\title{Random Processes}
+\subtitle{Random Processes, February 2019}
+\author{Lukas Richter}
+\institute{AGES, Austrian Agency for Health and Food Safety}
+\date[]{27.02.2019} %{\Sexpr{format(Sys.Date(), format = "%d.%m.%Y")}}
+
+% Title slide
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \frame{
+%   \titlepage
+% }
+\begin{frame}[plain]
+ \titlepage
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% % slide 3
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}[fragile]{Background}
+% \begin{center}
+% \begin{itemize}
+%   \item 1
+%   \item 2
+% \end{itemize}
+% \end{center}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
+
