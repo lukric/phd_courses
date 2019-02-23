@@ -42,6 +42,7 @@
 \bgin{box}
 blah
 \end{box}
+and some text
 \end{center}
 \end{frame}
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
