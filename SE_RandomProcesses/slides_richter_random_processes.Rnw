@@ -22,6 +22,8 @@
 \let\otp\titlepage
 \renewcommand{\titlepage}{\otp\addtocounter{framenumber}{-1}}
 
+\newtheorem{proposition}{Proposition}
+
 \begin{document}
 %%%%
 \title{4.B Cartesian products}
@@ -43,7 +45,7 @@ VO Random Processes 2018/2019}
 
 % slide 1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{From Chapter 4.A}
+\begin{frame}[fragile]{From Chapter 4.A I}
 %\begin{center}
 \begin{definition}
 $\mathcal{N}$ (or $(X, P)$) satisfies an $\mathcal{F}$-isoperimetric inequality $IS_{\mathcal{F}}$, if there is a constant $\kappa > 0$ such that
@@ -54,8 +56,24 @@ for every finite $A \subset X$. \\
 If this holds for the SRW then we say that the graph $X$ itself satisfies $IS_{\mathcal{F}}$.
 \end{definition}
 
-If $\mathcal{F}(t) = t^{1-\frac{1}{d}} (1 \le d \le \infty)$ then we call it $d$-dimensional isoperimetric inequality, $IS_d$.
+\begin{itemize}
+\item If $\mathcal{F}(t) = t^{1-\frac{1}{d}} (1 \le d \le \infty)$ then we call it $d$-dimensional isoperimetric inequality, $IS_d$.
+\item For a function $f:X\to \mathbb{R}$, the \textit{Sobolev norm} is $S_P(f)=\frac{1}{2}\sum_{x,y\in X} | f(x)-f(y) | a(x,y)$ and its norm in $\ell^p(X,m)$ is $\|f\|_p=\left( \sum_{x\in X}|f(x)|^p m(x) \right)^{1/p}$
+\end{itemize}
+%\end{center}
+\end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% slide 1.2 Proposition
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{From Chapter 4.A II}
+%\begin{center}
+\begin{proposition}
+$(X,P)$ satisfies $IS_d (1 \le d \le \infty)$ if and only if
+\begin{align*}
+\|f\|_{\frac{d}{d-1}}\le \kappa S_P(f) \text{ for every } f \in \ell_0(X).
+\end{align*}
+\end{proposition}
 %\end{center}
 \end{frame}
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

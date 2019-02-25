@@ -71,6 +71,8 @@
 
 \let\otp\titlepage
 \renewcommand{\titlepage}{\otp\addtocounter{framenumber}{-1}}
+
+\newtheorem{proposition}{Proposition}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 %%%%
@@ -93,7 +95,7 @@ VO Random Processes 2018/2019}
 
 % slide 1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{From Chapter 4.A}
+\begin{frame}[fragile]{From Chapter 4.A I}
 %\begin{center}
 \begin{definition}
 $\mathcal{N}$ (or $(X, P)$) satisfies an $\mathcal{F}$-isoperimetric inequality $IS_{\mathcal{F}}$, if there is a constant $\kappa > 0$ such that
@@ -104,15 +106,31 @@ for every finite $A \subset X$. \\
 If this holds for the SRW then we say that the graph $X$ itself satisfies $IS_{\mathcal{F}}$.
 \end{definition}
 
-If $\mathcal{F}(t) = t^{1-\frac{1}{d}} (1 \le d \le \infty)$ then we call it $d$-dimensional isoperimetric inequality, $IS_d$.
+\begin{itemize}
+\item If $\mathcal{F}(t) = t^{1-\frac{1}{d}} (1 \le d \le \infty)$ then we call it $d$-dimensional isoperimetric inequality, $IS_d$.
+\item For a function $f:X\to \mathbb{R}$, the \textit{Sobolev norm} is $S_P(f)=\frac{1}{2}\sum_{x,y\in X} | f(x)-f(y) | a(x,y)$ and its norm in $\ell^p(X,m)$ is $\|f\|_p=\left( \sum_{x\in X}|f(x)|^p m(x) \right)^{1/p}$
+\end{itemize}
+%\end{center}
+\end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% slide 1.2 Proposition
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{From Chapter 4.A II}
+%\begin{center}
+\begin{proposition}
+$(X,P)$ satisfies $IS_d (1 \le d \le \infty)$ if and only if
+\begin{align*}
+\|f\|_{\frac{d}{d-1}}\le \kappa S_P(f) \text{ for every } f \in \ell_0(X).
+\end{align*}
+\end{proposition}
 %\end{center}
 \end{frame}
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % slide 2 - Graphs direct and cartesian product
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Definitions I}
+\begin{frame}[fragile]{Graphs}
 \begin{itemize}
 \item $X_1, X_2$ ... graphs
 \item \textbf{Direct product} $X_1 \otimes X_2$: the graph with vertex set $\{x_1x_2, x_i \in X_i\}$
@@ -126,7 +144,7 @@ $x_1 x_2 \sim y_1 y_2 \iff x_1\sim y_1 \text{ and } x_2 \sim y_2$
 
 % slide 3 - Networks direct and cartesian product
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Definitions II}
+\begin{frame}[fragile]{Networks}
 Analoguous for networks
 \begin{itemize}
 \item $\mathcal{N}_1, \mathcal{N}_2$ ... networks with conductance functions $a_1, a_2$
@@ -140,7 +158,7 @@ $a(x_1 x_2, y_1 y_2) =  a_1(x_1, y_1)\delta_{x_2}(y_2) + a_2(x_2, y_2)\delta_{x_
 
 % slide 4 - transition matrices direct and cartesian product
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Definitions III}
+\begin{frame}[fragile]{Transition matrices}
 Transition matrices
 \begin{itemize}
 \item $P_1, P_2$ ... transition matrices over $X_1, X_2$
