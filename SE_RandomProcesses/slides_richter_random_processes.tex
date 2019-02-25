@@ -1,4 +1,54 @@
-\documentclass{beamer}
+\documentclass{beamer}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
 %\setbeamertemplate{background}{\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{ages_background2.png}}
 
 \usepackage[ngerman,english]{babel}
@@ -21,7 +71,7 @@
 
 \let\otp\titlepage
 \renewcommand{\titlepage}{\otp\addtocounter{framenumber}{-1}}
-
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 %%%%
 \title{4.B Cartesian products}
@@ -29,7 +79,7 @@
 \newline
 VO Random Processes 2018/2019}
 \author{Lukas Richter}
-\date[]{27.02.2019} %{\Sexpr{format(Sys.Date(), format = "%d.%m.%Y")}}
+\date[]{27.02.2019} %{25.02.2019}
 
 % Title slide
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -62,7 +112,7 @@ If $\mathcal{F}(t) = t^{1-\frac{1}{d}} (1 \le d \le \infty)$ then we call it $d$
 
 % slide 2 - Graphs direct and cartesian product
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Graphs}
+\begin{frame}[fragile]{Definitions I}
 \begin{itemize}
 \item $X_1, X_2$ ... graphs
 \item \textbf{Direct product} $X_1 \otimes X_2$: the graph with vertex set $\{x_1x_2, x_i \in X_i\}$
@@ -76,7 +126,7 @@ $x_1 x_2 \sim y_1 y_2 \iff x_1\sim y_1 \text{ and } x_2 \sim y_2$
 
 % slide 3 - Networks direct and cartesian product
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Networks}
+\begin{frame}[fragile]{Definitions II}
 Analoguous for networks
 \begin{itemize}
 \item $\mathcal{N}_1, \mathcal{N}_2$ ... networks with conductance functions $a_1, a_2$
@@ -90,7 +140,7 @@ $a(x_1 x_2, y_1 y_2) =  a_1(x_1, y_1)\delta_{x_2}(y_2) + a_2(x_2, y_2)\delta_{x_
 
 % slide 4 - transition matrices direct and cartesian product
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Transition matrices}
+\begin{frame}[fragile]{Definitions III}
 Transition matrices
 \begin{itemize}
 \item $P_1, P_2$ ... transition matrices over $X_1, X_2$
