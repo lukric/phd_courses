@@ -6,9 +6,13 @@
 \usepackage[utf8]{inputenc}
 
 \usepackage{lmodern} %schrift besser lesbar
+%\usepackage{exscale}
 
 \usepackage{amsmath, amsthm}
 \usepackage{amssymb}
+
+\usepackage[backend = bibtex, natbib = true, style = numeric, sorting = none]{biblatex}
+\addbibresource{refs.bib}
 
 \usetheme{Boadilla}
 
@@ -27,7 +31,7 @@
 \begin{document}
 %%%%
 \title{4.B Cartesian products}
-\subtitle{from Random Walks on infinite Graphs and Groups by W.Woess \newline
+\subtitle{from \textit{Random Walks on infinite Graphs and Groups} by W.Woess \newline
 \newline
 VO Random Processes 2018/2019}
 \author{Lukas Richter}
@@ -55,11 +59,9 @@ $\mathcal{N}$ (or $(X, P)$) satisfies an $\mathcal{F}$-isoperimetric inequality 
 for every finite $A \subset X$. \\
 If this holds for the SRW then we say that the graph $X$ itself satisfies $IS_{\mathcal{F}}$.
 \end{definition}
+\vspace{1cm}
+If $\mathcal{F}(t) = t^{1-\frac{1}{d}} (1 \le d \le \infty)$ then we call it $d$-dimensional isoperimetric inequality, $IS_d$.
 
-\begin{itemize}
-\item If $\mathcal{F}(t) = t^{1-\frac{1}{d}} (1 \le d \le \infty)$ then we call it $d$-dimensional isoperimetric inequality, $IS_d$.
-\item For a function $f:X\to \mathbb{R}$, the \textit{Sobolev norm} is $S_P(f)=\frac{1}{2}\sum_{x,y\in X} | f(x)-f(y) | a(x,y)$ and its norm in $\ell^p(X,m)$ is $\|f\|_p=\left( \sum_{x\in X}|f(x)|^p m(x) \right)^{1/p}$
-\end{itemize}
 %\end{center}
 \end{frame}
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -68,6 +70,8 @@ If this holds for the SRW then we say that the graph $X$ itself satisfies $IS_{\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{From Chapter 4.A II}
 %\begin{center}
+For a function $f:X\to \mathbb{R}$, the \textit{Sobolev norm} is $S_P(f)=\frac{1}{2}\sum_{x,y\in X} | f(x)-f(y) | a(x,y)$ and its norm in $\ell^p(X,m)$ is $\|f\|_p=\left( \sum_{x\in X}|f(x)|^p m(x) \right)^{1/p}$
+\vspace{1cm}
 \begin{proposition}
 $(X,P)$ satisfies $IS_d (1 \le d \le \infty)$ if and only if
 \begin{align*}
@@ -80,7 +84,7 @@ $(X,P)$ satisfies $IS_d (1 \le d \le \infty)$ if and only if
 
 % slide 2 - Graphs direct and cartesian product
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Graphs}
+\begin{frame}[fragile]{Direct and Cartesian product of graphs}
 \begin{itemize}
 \item $X_1, X_2$ ... graphs
 \item \textbf{Direct product} $X_1 \otimes X_2$: the graph with vertex set $\{x_1x_2, x_i \in X_i\}$
@@ -88,32 +92,38 @@ $(X,P)$ satisfies $IS_d (1 \le d \le \infty)$ if and only if
 $x_1 x_2 \sim y_1 y_2 \iff x_1\sim y_1 \text{ and } x_2 \sim y_2$
 \item \textbf{Cartesian product} $X_1 \times X_2$: same vertex set as above
 \item Neighbourhood given by: $x_1 x_2 \sim y_1 y_2 \iff x_1\sim y_1 \text{ and } x_2 = y_2 \text{ or } x_1 = y_1 \text{ and } x_2 \sim y_2$
+\item If both factors are bipartite graphs (they have no closed paths with odd length), then the direct product is disconnected.
+\item $\Gamma_1, \Gamma_2$ finitely generated groups with Cayley graphs $X(\Gamma_i, S_i)$, then the direct product is not necessarily a Cayley graph of $\Gamma_1 \times \Gamma_2$ - it \textbf{is} true for the Cartesian product.
+\item The SRW on the Cartesian product of two regular graphs is a Cartesian product of the SRWs on the factors.
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % slide 3 - Networks direct and cartesian product
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Networks}
-Analoguous for networks
+\begin{frame}[fragile]{Direct and Cartesian product of networks}
+% Analoguous for networks:
 \begin{itemize}
 \item $\mathcal{N}_1, \mathcal{N}_2$ ... networks with conductance functions $a_1, a_2$
 \item \textbf{Direct product} $\mathcal{N}_1 \otimes \mathcal{N}_2$: with conductance function\\
 $a(x_1 x_2, y_1 y_2) =  a_1(x_1, y_1)a_2(x_2, y_2)$
+\item Not necessarily connected.
 \item \textbf{Cartesian product} $\mathcal{N}_1 \times \mathcal{N}_2$: with conductance function\\
 $a(x_1 x_2, y_1 y_2) =  a_1(x_1, y_1)\delta_{x_2}(y_2) + a_2(x_2, y_2)\delta_{x_1}(y_1)$
+\item The reversible MC associated with the Cartesian product of two networks is not a Cartesian product of the reversible MC on the factors.
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % slide 4 - transition matrices direct and cartesian product
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Transition matrices}
-Transition matrices
+\begin{frame}[fragile]{Direct and Cartesian product of transition matrices}
+% For transition matrices:
 \begin{itemize}
 \item $P_1, P_2$ ... transition matrices over $X_1, X_2$
-\item \textbf{Direct product} (tensor product) $P_1 \otimes P_2$:\\
+\item \textbf{Direct (or tensor) product} $P_1 \otimes P_2$:\\
 $p(x_1 x_2, y_1 y_2) =  p_1(x_1, y_1)p_2(x_2, y_2)$
+\item In general it does not preserve irreducibility.
 \item \textbf{Cartesian product} $P_1 \times P_2$:\\
 $P = c P_1 \otimes I_2 + (1 - c) I_1 \otimes P_2$ with $0<c<1$.
 \end{itemize}
@@ -126,25 +136,45 @@ $P = c P_1 \otimes I_2 + (1 - c) I_1 \otimes P_2$ with $0<c<1$.
 \begin{theorem}
 Let $\mathcal{N}_i,i=1,2$ be networks with associated invariant measures $m_i: \sup_{X_i} m_i(x)<\infty$. If $\mathcal{N}_1$ satisfies $IS_{d_1}$ and $\mathcal{N}_2$ satisfies $IS_{d_2}$ then $\mathcal{N} = \mathcal{N}_1 \times \mathcal{N}_2$ satisfies $IS_{d_1+d_2}$.
 \end{theorem}
+\vspace{5mm}
+\begin{proof}
+See blackboard / handout.
+\end{proof}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% slide X - Remarks
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Remarks}
-\begin{itemize}
-\item Let $\mathcal{N}_1, \mathcal{N}_2$ be networks which satisfy $IS_{d_1}$ and $IS_{d_2}$ and $P_i \ge c_i I_i$ holds elementwise ($c_i > 0, I_i$ identity over $X_i$), then $\mathcal{N}_1 \otimes \mathcal{N}_2$ satisfies $IS_{d_1+d_2}$.
-\end{itemize}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % slide X - Remarks
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}[fragile]{Remarks}
+% \begin{itemize}
+% \item 
+% \end{itemize}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % slide X - Corollary
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Corollary}
+\begin{frame}[fragile]{Remark and Corollary}
+\begin{block}{Remark}
+Let $\mathcal{N}_1, \mathcal{N}_2$ be networks which satisfy $IS_{d_1}$ and $IS_{d_2}$ and $P_i \ge c_i I_i$ holds elementwise ($c_i > 0, I_i$ identity over $X_i$), then $\mathcal{N}_1 \otimes \mathcal{N}_2$ satisfies $IS_{d_1+d_2}$.
+\end{block}
+\vspace{5mm}
 \begin{corollary}
 Let $X_1, X_2$ be infinite graphs with bounded geometry. If $X_1$ satisfies $IS_{d_1}$ and $X_2$ satisfies $IS_{d_2}$ then $X_1 \times X_2$ satisfies $IS_{d_1+d_2}$.\\
 In every case $X_1 \times X_2$ satisfies $IS_2$.
 \end{corollary}
+
+The SRW on $X_1 \times X_2$ may be replaced with a Cartesian product of the SRWs on the factors.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\nocite{woess2000}
+
+\renewcommand*{\bibfont}{\scriptsize}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{References}
+\printbibliography
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
