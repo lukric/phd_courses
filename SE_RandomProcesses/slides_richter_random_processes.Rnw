@@ -138,7 +138,7 @@ Let $\mathcal{N}_i,i=1,2$ be networks with associated invariant measures $m_i: \
 \end{theorem}
 \vspace{5mm}
 \begin{proof}
-See blackboard / handout.
+See Woess \cite{woess2000}.
 \end{proof}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
