@@ -1,0 +1,130 @@
+\documentclass{beamer}
+
+%\setbeamertemplate{background}{\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{ages_background2.png}}
+
+\usepackage[ngerman,english]{babel}
+\usepackage{lmodern} % schrift besser lesbar
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{comment}
+\usepackage{colortbl}
+
+\usepackage{amsmath, amsthm}
+\usepackage{amssymb}
+
+\usepackage[backend = bibtex, natbib = true, style = numeric, sorting = none]{biblatex}
+\addbibresource{../../diss_tex/references/mybib.bib}
+
+\usetheme{Boadilla}
+
+%\definecolor{ages}{RGB}{204,164,0}
+%\usecolortheme[named=ages]{structure}
+
+\setbeamercovered{transparent}
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{footline}[frame number]
+
+\newcommand{\Sin}[1]{\sin\left(#1\right)}%
+\newcommand{\Cos}[1]{\cos\left(#1\right)}%
+\newcommand{\Log}[1]{\log\left(#1\right)}%
+
+\begin{document}
+\graphicspath{{figures/}}
+%\graphicspath{{../../chapters/figures/IPD/}, {../../chapters/figures/}}
+%\graphicspath{{D:/diss/chapters/figures/IPD/}} %{{\Sexpr{paste0(getwd(), "/chapters/figures/IPD/")}}} %{../figures/IPD/}
+%% initialize %%
+
+<<OPTIONS_LIBRARIES, cache = FALSE, echo = FALSE, message = FALSE, warning = FALSE, results = "hide">>=
+library("knitr")
+opts_chunk$set(concordance = TRUE, 
+               echo = FALSE,
+               tidy = FALSE,
+               autodep = TRUE,
+               cache = FALSE, 
+               message = FALSE, 
+               warning = FALSE,
+               size = 'scriptsize',
+               results = 'hide',
+               comment = NA, 
+               fig.width = 7,
+               fig.height = 7, 
+               out.width = '.7\\textwidth',
+               fig.show = 'hold',
+               dev = 'png',
+               dpi = 300,
+               NULL)
+@
+
+%%%%
+\title{Mathematical models in outbreak response}
+\subtitle{SE Scientific Communication, 2019}
+\author{Lukas Richter}
+\date[]{\Sexpr{"28. June 2019"}}
+
+% \titlegraphic{
+%   \includegraphics[width=2.0cm]{logo_ages}\hspace*{3cm}~%
+%   \includegraphics[width=2.0cm]{logo_tugraz}
+% }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frame{
+  \titlepage
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frame{
+  \tableofcontents
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Background}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Background}
+\begin{center}
+
+
+
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Objective}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{}
+\begin{center}
+\Huge{\textbf{Thank you!}}\\
+\Huge{\textbf{Any questions?}}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+\nocite{richter2019}
+
+\renewcommand*{\bibfont}{\scriptsize}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{References}
+\printbibliography
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}
+
+
