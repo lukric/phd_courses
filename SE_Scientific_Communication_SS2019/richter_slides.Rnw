@@ -11,6 +11,7 @@
 
 \usepackage{amsmath, amsthm}
 \usepackage{amssymb}
+\usepackage{bbm} % "Blackboard-style" cm fonts
 
 \usepackage[backend = bibtex, natbib = true, style = numeric, sorting = none]{biblatex}
 \addbibresource{../../diss_tex/references/mybib.bib}
@@ -27,6 +28,7 @@
 \newcommand{\Sin}[1]{\sin\left(#1\right)}%
 \newcommand{\Cos}[1]{\cos\left(#1\right)}%
 \newcommand{\Log}[1]{\log\left(#1\right)}%
+\newcommand{\mli}[1]{\mathit{#1}}% MulitLetterIdentifier - produces nice names for multi character variables in math environments
 
 \begin{document}
 \graphicspath{{figures/}}
@@ -66,6 +68,8 @@ opts_chunk$set(concordance = TRUE,
 %   \includegraphics[width=2.0cm]{logo_tugraz}
 % }
 
+%10-15 min presentation
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frame{
@@ -85,18 +89,120 @@ opts_chunk$set(concordance = TRUE,
 \begin{center}
 
 
+Outbreaks:
+Influenza, 2009
+MERS-Cov (Middle-East Respiratory Syndrome)
+Ebola, West Africa, DRC
+Zika Virus, Brazil
+
+
 
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Objective}
+\begin{frame}[fragile]{Objective/Goal}
 
+during outbreak:
+exploit all data
+inform response team in real time
+
+in general (also non outbreak situation)
+allow evidence based decisions
+compare/assess interventions
+policy evaluation (before/after in), vaccine programmes
+
+track of WHO targets (HIV, HCV)
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Types of models}
+
+dynamic, mathematical (SIR)
+statistical (e.g. Poisson regression)
+Bayesian statistics
+spacial stats/models
+
+-> visualise outcome
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Example of outbreak analytics workflow.}
+\begin{center}
+\begin{figure}
+  \centering
+  % \caption{Example of outbreak analytics workflow.}
+  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{polonsky2019_Fig2.png}
+\end{figure}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{IPD}
+\begin{center}
+\begin{figure}
+  \centering
+  \caption{Monthly incidence of (A) PCV10 ST-IPD and (B) non-PCV10 ex ST 6A-/19A-IPD, among the $\ge$50 years old, observed and modelled by a segmented negative binominal regression, Austria, January 2009-February 2017, shown are overall and seasonal trends.}
+  \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{richter2019_Fig3.png}
+\end{figure}
+\end{center}
+
+\vfill
+{\scriptsize Richter et al. 2019}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{IPD2}
+
+\begin{block}{Model}
+\begin{align*}
+\begin{split}
+\Log{Y_t}\, =
+  &\, \Log{\mli{pop}_t} + \beta_0+\beta_1\,t + \beta_2\,\Sin{\frac{2 \pi t}{12}} \\
+  &+ \beta_3\,\Cos{\frac{2 \pi t}{12}} + \beta_5\,\left(t-t_0\right)^+ \\
+  &+\, \mathbbm{1}_{t-t_0>0} \left[\beta_4 + \beta_6\,\sin\left(\frac{2 \pi t}{12}\right) + \,\beta_7\,\cos\left(\frac{2 \pi t}{12}\right)\right]
+\end{split}
+\end{align*}
+
+with
+\begin{align*} 
+(x)^+ = 
+\begin{cases}
+x, &\text{if $x > 0$,}\\
+0, &\text{otherwise.}
+\end{cases}
+\end{align*}
+\end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{HIV/HCV}
+a
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{GO ??}
+a
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Conclusion}
+Here comes the conclusion
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
@@ -109,10 +215,7 @@ opts_chunk$set(concordance = TRUE,
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
-
-
+\nocite{polonsky2019}
 \nocite{richter2019}
 
 \renewcommand*{\bibfont}{\scriptsize}
