@@ -25,6 +25,10 @@
 \beamertemplatenavigationsymbolsempty
 \setbeamertemplate{footline}[frame number]
 
+\newcommand\numbered{\setbeamertemplate{footline}[frame number]}
+\newcommand\unnumbered{\setbeamertemplate{footline}{}}
+
+
 \newcommand{\Sin}[1]{\sin\left(#1\right)}%
 \newcommand{\Cos}[1]{\cos\left(#1\right)}%
 \newcommand{\Log}[1]{\log\left(#1\right)}%
@@ -72,15 +76,17 @@ opts_chunk$set(concordance = TRUE,
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\frame{
+{\unnumbered
+\begin{frame}[noframenumbering]
   \titlepage
-}
+\end{frame}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\frame{
+{\unnumbered
+\begin{frame}[noframenumbering]
   \tableofcontents
-}
+\end{frame}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Background}
@@ -88,11 +94,11 @@ opts_chunk$set(concordance = TRUE,
 \begin{frame}[fragile]{Background}
 \begin{center}
 
-
-Outbreaks:
-Influenza, 2009
-MERS-Cov (Middle-East Respiratory Syndrome)
-Ebola, West Africa, DRC
+\unnumbered
+Outbreaks: \\
+Influenza, 2009 \\
+MERS-Cov (Middle-East Respiratory Syndrome) \\
+Ebola, West Africa, DRC \\
 Zika Virus, Brazil
 
 
@@ -104,14 +110,14 @@ Zika Virus, Brazil
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Objective/Goal}
 
-during outbreak:
-exploit all data
-inform response team in real time
+during outbreak: \\
+exploit all data \\
+inform response team in real time \\
 
-in general (also non outbreak situation)
-allow evidence based decisions
-compare/assess interventions
-policy evaluation (before/after in), vaccine programmes
+in general (also non outbreak situation) \\
+allow evidence based decisions \\
+compare/assess interventions \\
+policy evaluation (before/after in), vaccine programmes \\
 
 track of WHO targets (HIV, HCV)
 
@@ -121,10 +127,10 @@ track of WHO targets (HIV, HCV)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Types of models}
 
-dynamic, mathematical (SIR)
-statistical (e.g. Poisson regression)
-Bayesian statistics
-spacial stats/models
+dynamic, mathematical (SIR) \\
+statistical (e.g. Poisson regression) \\
+Bayesian statistics \\
+spacial stats/models \\
 
 -> visualise outcome
 
@@ -186,8 +192,60 @@ x, &\text{if $x > 0$,}\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{HIV/HCV}
-a
+\begin{frame}[fragile]{Zika~\cite{ferguson2016}} % source: https://www.reconlearn.org/post/practical-vbd.html
+Humans:
+\begin{align*}
+\frac{dS_h}{dt} &= \mu_h N_h - \frac {\beta_h b}{N_h} S_h  I_v - \mu_h  S_h \\
+\frac{dI_h}{dt} &= \frac {\beta_h b}{N_h}S_h I_v - (\gamma_h + \mu_h) I_h \\
+\frac{dR_h}{dt} &= \gamma_h I_h  - \mu_h I_h
+\end{align*}
+
+Vectors:
+\begin{align*}
+\frac{dS_v}{dt} &= \mu_v N_v  - \frac{\beta_v b} {N_h} I_h S_v - \mu_v S_v \\
+\frac{dE_v}{dt} &= \frac{\beta_v b} {N_h} I_h S_v - (\delta + \mu_v) E_v \\
+\frac{dI_v}{dt} &= \delta E_v - \mu_v I_v
+\end{align*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Zika2} % source: https://www.reconlearn.org/post/practical-vbd.html
+<<eval = FALSE, echo = TRUE>>=
+Lv       <-        # life span of mosquitos (in days)
+Lh       <-        # life span of humans (in days)
+Iph      <-        # Infectious period in humans (in days)
+IP       <-        # Infectious period in vectors (in days)
+EIP      <-        # Extrinsic incubation period in adult mosquitos
+muv      <-        # mortality of mosquitos
+muh      <-        # mortality of humans
+gamma    <-        # recovery rate in humans
+delta    <-        # extrinsic incubation rate
+b        <-        # Biting Rate
+betah    <-        # Probability of transmission from vector to host
+betav    <-        # Probability of transmission from host to vector
+Nh       <-        # Number of humans (Population of Cali 2.4 million)
+m        <-        # Vector to human ratio
+Nv       <-        # Number of vectors
+R0       <-        # Reproductive number
+b        <-        sqrt((R0 ^2 * muv*(muv+delta) * (muh+gamma)) /
+                   (m * betah * betav * delta)) # biting rate
+
+TIME     <-        # Number of years to run the simulation for 
+@
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Zika3} % source: https://www.reconlearn.org/post/practical-vbd.html
+
+$S_h$: Susceptible Humans \\
+$I_h$ : Infected/Infectious humans \\
+$R_h$: Humans recovered from infection (with lifelong immunity) \\
+$S_v$: Susceptible vectors \\
+$E_v$: Exposed vectors 
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -220,11 +278,13 @@ Here comes the conclusion
 
 \renewcommand*{\bibfont}{\scriptsize}
 \setbeamertemplate{bibliography item}{\insertbiblabel}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{References}
-\printbibliography
 
-\end{frame}
+\section{References}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\unnumbered
+\begin{frame}[noframenumbering]
+  \printbibliography
+\end{frame}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
