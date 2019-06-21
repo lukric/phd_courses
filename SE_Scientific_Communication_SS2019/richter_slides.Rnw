@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[table]{beamer}
 
 %\setbeamertemplate{background}{\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{ages_background2.png}}
 
@@ -7,13 +7,14 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{comment}
-\usepackage{colortbl}
 
 \usepackage{amsmath, amsthm}
 \usepackage{amssymb}
 \usepackage{bbm} % "Blackboard-style" cm fonts
+\usepackage{xcolor}
+\usepackage{colortbl}
 
-\usepackage[backend = bibtex, natbib = true, style = numeric, sorting = none]{biblatex}
+\usepackage[backend = bibtex, natbib = true, style = numeric, sorting = none, citestyle = authoryear]{biblatex}
 \addbibresource{../../diss_tex/references/mybib.bib}
 
 \usetheme{Boadilla}
@@ -33,6 +34,12 @@
 \newcommand{\Cos}[1]{\cos\left(#1\right)}%
 \newcommand{\Log}[1]{\log\left(#1\right)}%
 \newcommand{\mli}[1]{\mathit{#1}}% MulitLetterIdentifier - produces nice names for multi character variables in math environments
+
+% generate block with different colour
+\newenvironment{variableblock}[3]{%
+  \setbeamercolor{block body}{#2}
+  \setbeamercolor{block title}{#3}
+  \begin{block}{#1}}{\end{block}}
 
 \begin{document}
 \graphicspath{{figures/}}
@@ -62,7 +69,7 @@ opts_chunk$set(concordance = TRUE,
 @
 
 %%%%
-\title{Mathematical models in outbreak response}
+\title{Models in public health}
 \subtitle{SE Scientific Communication, 2019}
 \author{Lukas Richter}
 \date[]{\Sexpr{"28. June 2019"}}
@@ -150,8 +157,9 @@ spacial stats/models \\
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{Statistical models}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{IPD}
+\begin{frame}[fragile]{Intervention effect - Invasive Pneumococcal Disease (IPD)}
 \begin{center}
 \begin{figure}
   \centering
@@ -161,14 +169,14 @@ spacial stats/models \\
 \end{center}
 
 \vfill
-{\scriptsize Richter et al. 2019}
+{\scriptsize \cite{richter2019}}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{IPD2}
 
-\begin{block}{Model}
+\begin{block}{Serfling-like Model}
 \begin{align*}
 \begin{split}
 \Log{Y_t}\, =
@@ -191,67 +199,113 @@ x, &\text{if $x > 0$,}\\
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{Dynamic models}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Zika~\cite{ferguson2016}} % source: https://www.reconlearn.org/post/practical-vbd.html
-Humans:
+\begin{frame}[fragile]{Transmission model of Zika Virus} % source: https://www.reconlearn.org/post/practical-vbd.html
+
+\begin{minipage}{.45\textwidth}
+\rowcolors{2}{gray!8}{gray!20}
+\begin{table}[]
+\begin{tabular}{ll}
+\hline
+\rowcolor{gray!50}
+Vars & Description                                                                                          \\ \hline
+$S_h$    & Susceptible Humans                                                                                   \\
+$I_h$    & \begin{tabular}[c]{@{}l@{}}Infected/Infectious\\ humans\end{tabular}                                 \\
+$R_h$    & \begin{tabular}[c]{@{}l@{}}Humans recovered from\\ infection (with lifelong\\ immunity)\end{tabular} \\
+$S_v$    & Susceptible vectors                                                                                  \\
+$E_v$    & Exposed vectors                                                                                      \\ \hline
+\end{tabular}
+\end{table}
+
+\end{minipage}
+\hfill
+\begin{minipage}{.52\textwidth}
+\vspace{1.5cm}
+\begin{figure}
+  \hfill \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{SImodel.png}
+\end{figure}
+\vspace{1cm} {\raggedright\tiny adapted from\\ \url{https://www.reconlearn.org/} and ~\cite{ferguson2016} \par}
+\end{minipage}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Transmission model of Zika Virus} % source: https://www.reconlearn.org/post/practical-vbd.html
+
+\begin{minipage}{.45\textwidth}
+\definecolor{my_blue}{rgb}{0.616, 0.765, 0.902}
+\begin{variableblock}{Humans/Host}{bg=my_blue!30,fg=black}{bg=my_blue,fg=black}
 \begin{align*}
 \frac{dS_h}{dt} &= \mu_h N_h - \frac {\beta_h b}{N_h} S_h  I_v - \mu_h  S_h \\
 \frac{dI_h}{dt} &= \frac {\beta_h b}{N_h}S_h I_v - (\gamma_h + \mu_h) I_h \\
 \frac{dR_h}{dt} &= \gamma_h I_h  - \mu_h I_h
 \end{align*}
-
-Vectors:
+\end{variableblock}
+\definecolor{my_green}{rgb}{0.663, 0.82, 0.557}
+\begin{variableblock}{Vectors}{bg=my_green!30,fg=black}{bg=my_green,fg=black}
 \begin{align*}
 \frac{dS_v}{dt} &= \mu_v N_v  - \frac{\beta_v b} {N_h} I_h S_v - \mu_v S_v \\
-\frac{dE_v}{dt} &= \frac{\beta_v b} {N_h} I_h S_v - (\delta + \mu_v) E_v \\
-\frac{dI_v}{dt} &= \delta E_v - \mu_v I_v
+\frac{dI_v}{dt} &= \frac{\beta_v b} {N_h} I_h S_v - \mu_v I_v
 \end{align*}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{variableblock}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Zika2} % source: https://www.reconlearn.org/post/practical-vbd.html
-<<eval = FALSE, echo = TRUE>>=
-Lv       <-        # life span of mosquitos (in days)
-Lh       <-        # life span of humans (in days)
-Iph      <-        # Infectious period in humans (in days)
-IP       <-        # Infectious period in vectors (in days)
-EIP      <-        # Extrinsic incubation period in adult mosquitos
-muv      <-        # mortality of mosquitos
-muh      <-        # mortality of humans
-gamma    <-        # recovery rate in humans
-delta    <-        # extrinsic incubation rate
-b        <-        # Biting Rate
-betah    <-        # Probability of transmission from vector to host
-betav    <-        # Probability of transmission from host to vector
-Nh       <-        # Number of humans (Population of Cali 2.4 million)
-m        <-        # Vector to human ratio
-Nv       <-        # Number of vectors
-R0       <-        # Reproductive number
-b        <-        sqrt((R0 ^2 * muv*(muv+delta) * (muh+gamma)) /
-                   (m * betah * betav * delta)) # biting rate
-
-TIME     <-        # Number of years to run the simulation for 
-@
+\end{minipage}
+\hfill
+\begin{minipage}{.52\textwidth}
+\vspace{1.5cm}
+\begin{figure}
+  \hfill \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{SImodel.png}
+\end{figure}
+\vspace{1cm} {\raggedright\tiny adapted from\\ \url{https://www.reconlearn.org/} and ~\cite{ferguson2016} \par}
+\end{minipage}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Zika3} % source: https://www.reconlearn.org/post/practical-vbd.html
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}[fragile]{blah} %
+% \begin{center}
+% \begin{figure}
+%   \centering
+%   \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{SImodel.png}
+% \end{figure}
+% \end{center}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}[fragile]{Zika2} % source: https://www.reconlearn.org/post/practical-vbd.html
+% <<eval = FALSE, echo = TRUE>>=
+% Lv       <-        # life span of mosquitos (in days)
+% Lh       <-        # life span of humans (in days)
+% Iph      <-        # Infectious period in humans (in days)
+% IP       <-        # Infectious period in vectors (in days)
+% EIP      <-        # Extrinsic incubation period in adult mosquitos
+% muv      <-        # mortality of mosquitos
+% muh      <-        # mortality of humans
+% gamma    <-        # recovery rate in humans
+% delta    <-        # extrinsic incubation rate
+% b        <-        # Biting Rate
+% betah    <-        # Probability of transmission from vector to host
+% betav    <-        # Probability of transmission from host to vector
+% Nh       <-        # Number of humans (Population of Cali 2.4 million)
+% m        <-        # Vector to human ratio
+% Nv       <-        # Number of vectors
+% R0       <-        # Reproductive number
+% b        <-        sqrt((R0 ^2 * muv*(muv+delta) * (muh+gamma)) /
+%                    (m * betah * betav * delta)) # biting rate
+% 
+% TIME     <-        # Number of years to run the simulation for 
+% @
+% 
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-$S_h$: Susceptible Humans \\
-$I_h$ : Infected/Infectious humans \\
-$R_h$: Humans recovered from infection (with lifelong immunity) \\
-$S_v$: Susceptible vectors \\
-$E_v$: Exposed vectors 
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{GO ??}
-a
+other applications of SIR models
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -263,18 +317,26 @@ Here comes the conclusion
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{}
 \begin{center}
-\Huge{\textbf{Thank you!}}\\
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{Thank-you-word-cloud.jpg}
+\end{figure}
+
 \Huge{\textbf{Any questions?}}
+% \begin{figure}
+%   \centering
+%   \includegraphics[width=\textwidth,height=0.1\textheight,keepaspectratio]{questions.png}
+% \end{figure}
+
 \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \nocite{polonsky2019}
-\nocite{richter2019}
+\nocite{serfling1967}
 
 \renewcommand*{\bibfont}{\scriptsize}
 \setbeamertemplate{bibliography item}{\insertbiblabel}
@@ -282,7 +344,7 @@ Here comes the conclusion
 \section{References}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {\unnumbered
-\begin{frame}[noframenumbering]
+\begin{frame}[noframenumbering]{References}
   \printbibliography
 \end{frame}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
