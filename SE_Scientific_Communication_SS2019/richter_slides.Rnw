@@ -22,6 +22,8 @@
 %\definecolor{ages}{RGB}{204,164,0}
 %\usecolortheme[named=ages]{structure}
 
+\setbeamertemplate{blocks}[rounded][shadow=false]
+% \setbeamercolor{frametitle}{bg=structure.fg!20!bg}
 \setbeamercovered{transparent}
 \beamertemplatenavigationsymbolsempty
 \setbeamertemplate{footline}[frame number]
@@ -40,7 +42,7 @@
   \setbeamercolor{block body}{#2}
   \setbeamercolor{block title}{#3}
   \begin{block}{#1}}{\end{block}}
-
+  
 \begin{document}
 \graphicspath{{figures/}}
 %\graphicspath{{../../chapters/figures/IPD/}, {../../chapters/figures/}}
@@ -99,20 +101,48 @@ opts_chunk$set(concordance = TRUE,
 \section{Background}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Background}
-\begin{center}
 
-Infectious diseases cause 
+Infectious diseases are a threat to human health \\
+cost lifes and also money
 
-Outbreaks: \\
-Influenza, 2009 \\
-MERS-Cov (Middle-East Respiratory Syndrome) \\
-Ebola, West Africa, DRC \\
-Zika Virus, Brazil
+Outbreaks \\
+``sporadic'' cases \\
 
-role of modelling increases
+different transmission chains
+\begin{figure}
+  \centering
+  % \caption{Example of outbreak analytics workflow.}
+  \includegraphics[width=0.7\textwidth,keepaspectratio]{disease-transmission_med.jpeg}
+\end{figure}
 
-\end{center}
+
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{
+\usebackgroundtemplate{\includegraphics[height=\paperheight]{outbreak.jpg}}%
+\setbeamercolor{frametitle}{bg=structure.fg!20!bg}%
+\begin{frame}[fragile]{Outbreaks}
+
+\begin{block} {Influenza pandemic ``swine flu''}
+Global, 2009-2010, 100.000--400.000 deaths
+\end{block}
+\begin{block} {Ebola}
+% MERS-Cov (Middle-East Respiratory Syndrome) \\
+West Africa, 2014-2016, 11.000 deaths \\
+DRC, since 2018, 1.900 deaths
+\end{block}
+\begin{block} {Zika Virus}
+Brazil, 2015-2016, ca. 215.000 cases (CHECK!) wolrdwide
+\end{block}
+\begin{block} {Measles}
+Europe, 2019, ca. 6.300 cases \\
+Austria, 2019, more than 120 cases
+\end{block}
+
+\end{frame}
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -122,21 +152,19 @@ during outbreak: \\
 exploit all data \\
 inform response team in real time \\
 
-guide high impact and cost-effective interventions\\
-in general (also non outbreak situation) \\
-allow evidence based decisions \\
-compare/assess interventions \\
-policy evaluation (before/after in), vaccine programmes \\
+non outbreak situations: \\
 health programmes are usually implemented over a long period of time with broad benefits to many in the community \\
+find high impact and cost-effective interventions \\
+allow evidence based decisions \\
+policy evaluation (vaccine programmes, WHO disease elimination targets) \\ % HIV-AIDS, Hepatitis C
 
-Clinical trials are seldom large enough to capture these effects \\
+benefits of model: \\
+cheap: Clinical trials are seldom large enough to capture these effects \\
 often little or no data to analyse (new emerging diseases)\\
 
-mathematical models can help to assess potential threats and impacts early in the process, and later aid in interpreting data from complex and multifactorial systems\\
+mathematical models can help to assess potential threats and impacts early in the process, and later aid in interpreting data from complex and multifactorial systems
 
-track of WHO targets (HIV, HCV)
-
-The World Health Organisation's definition of public health refers to all organized measures to prevent disease, promote health, and prolong life among the population as a whole (World Health Organization, 2014). Mathematical modelling plays an increasingly important role in helping to guide the most high impact and cost-effective means of achieving these goals. Public health programmes are usually implemented over a long period of time with broad benefits to many in the community. Clinical trials are seldom large enough to capture these effects. Observational data may be used to evaluate a programme after it is underway, but have limited value in helping to predict the future impact of a proposed policy. Furthermore, public health practitioners are often required to respond to new threats, for which there is little or no previous data on which to assess the threat. Computational and mathematical models can help to assess potential threats and impacts early in the process, and later aid in interpreting data from complex and multifactorial systems. As such, these models can be critical tools in guiding public health action. However, there are a number of challenges in achieving a successful interface between modelling and public health. Here, we discuss some of these challenges.
+% The World Health Organisation's definition of public health refers to all organized measures to prevent disease, promote health, and prolong life among the population as a whole (World Health Organization, 2014). Mathematical modelling plays an increasingly important role in helping to guide the most high impact and cost-effective means of achieving these goals. Public health programmes are usually implemented over a long period of time with broad benefits to many in the community. Clinical trials are seldom large enough to capture these effects. Observational data may be used to evaluate a programme after it is underway, but have limited value in helping to predict the future impact of a proposed policy. Furthermore, public health practitioners are often required to respond to new threats, for which there is little or no previous data on which to assess the threat. Computational and mathematical models can help to assess potential threats and impacts early in the process, and later aid in interpreting data from complex and multifactorial systems. As such, these models can be critical tools in guiding public health action. However, there are a number of challenges in achieving a successful interface between modelling and public health. Here, we discuss some of these challenges.
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -149,7 +177,7 @@ statistical (e.g. Poisson regression) \\
 Bayesian statistics \\
 spacial stats/models \\
 
--> visualise outcome
+-> visualise outcome / communication
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -239,6 +267,7 @@ $E_v$    & Exposed vectors                                                      
 \end{minipage}
 
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Transmission model of Zika Virus} % source: https://www.reconlearn.org/post/practical-vbd.html
@@ -327,6 +356,9 @@ Foodborne outbreaks to identify the source of infection (poisson model)
 \section{Conclusion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Conclusion/Wrap up}
+
+
+
 We saw some examples of applied modelling\\
 plays an increasingly important role in helping to guide the most high impact and cost-effective prevent disease\\
 models can be critical tools in guiding public health action.\\
@@ -370,7 +402,7 @@ still a lot to do - However, there are a number of challenges in achieving a suc
 % \section{References}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {\unnumbered
-\begin{frame}[noframenumbering]{References}
+\begin{frame}[noframenumbering, shrink=30]{References}
   \printbibliography
 \end{frame}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
