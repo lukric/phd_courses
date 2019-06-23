@@ -69,7 +69,7 @@ opts_chunk$set(concordance = TRUE,
 @
 
 %%%%
-\title{Models in public health}
+\title{Modelling in public health}
 \subtitle{SE Scientific Communication, 2019}
 \author{Lukas Richter}
 \date[]{\Sexpr{"28. June 2019"}}
@@ -101,14 +101,15 @@ opts_chunk$set(concordance = TRUE,
 \begin{frame}[fragile]{Background}
 \begin{center}
 
-\unnumbered
+Infectious diseases cause 
+
 Outbreaks: \\
 Influenza, 2009 \\
 MERS-Cov (Middle-East Respiratory Syndrome) \\
 Ebola, West Africa, DRC \\
 Zika Virus, Brazil
 
-
+role of modelling increases
 
 \end{center}
 \end{frame}
@@ -121,12 +122,21 @@ during outbreak: \\
 exploit all data \\
 inform response team in real time \\
 
+guide high impact and cost-effective interventions\\
 in general (also non outbreak situation) \\
 allow evidence based decisions \\
 compare/assess interventions \\
 policy evaluation (before/after in), vaccine programmes \\
+health programmes are usually implemented over a long period of time with broad benefits to many in the community \\
+
+Clinical trials are seldom large enough to capture these effects \\
+often little or no data to analyse (new emerging diseases)\\
+
+mathematical models can help to assess potential threats and impacts early in the process, and later aid in interpreting data from complex and multifactorial systems\\
 
 track of WHO targets (HIV, HCV)
+
+The World Health Organisation's definition of public health refers to all organized measures to prevent disease, promote health, and prolong life among the population as a whole (World Health Organization, 2014). Mathematical modelling plays an increasingly important role in helping to guide the most high impact and cost-effective means of achieving these goals. Public health programmes are usually implemented over a long period of time with broad benefits to many in the community. Clinical trials are seldom large enough to capture these effects. Observational data may be used to evaluate a programme after it is underway, but have limited value in helping to predict the future impact of a proposed policy. Furthermore, public health practitioners are often required to respond to new threats, for which there is little or no previous data on which to assess the threat. Computational and mathematical models can help to assess potential threats and impacts early in the process, and later aid in interpreting data from complex and multifactorial systems. As such, these models can be critical tools in guiding public health action. However, there are a number of challenges in achieving a successful interface between modelling and public health. Here, we discuss some of these challenges.
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -209,7 +219,7 @@ x, &\text{if $x > 0$,}\\
 \begin{tabular}{ll}
 \hline
 \rowcolor{gray!50}
-Vars & Description                                                                                          \\ \hline
+Vars     & Description                                                                                          \\ \hline
 $S_h$    & Susceptible Humans                                                                                   \\
 $I_h$    & \begin{tabular}[c]{@{}l@{}}Infected/Infectious\\ humans\end{tabular}                                 \\
 $R_h$    & \begin{tabular}[c]{@{}l@{}}Humans recovered from\\ infection (with lifelong\\ immunity)\end{tabular} \\
@@ -304,21 +314,36 @@ $E_v$    & Exposed vectors                                                      
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{GO ??}
-other applications of SIR models
+\begin{frame}[fragile]{other applications}
+GO \\
+Ebola \\
+
+Influenza (Nielsen) \cite{nielsen2019} \\
+Foodborne outbreaks to identify the source of infection (poisson model)
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Conclusion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Conclusion/Wrap up}
+We saw some examples of applied modelling\\
+plays an increasingly important role in helping to guide the most high impact and cost-effective prevent disease\\
+models can be critical tools in guiding public health action.\\
+
+
+always comes with limitations (as other studies)\\
+decision makers benefit, so do the affected people
+still a lot to do - However, there are a number of challenges in achieving a successful interface between modelling and public health.
+
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Conclusion}
-Here comes the conclusion
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{}
+{\unnumbered
+\begin{frame}[noframenumbering]{}
 \begin{center}
 \begin{figure}
   \centering
@@ -332,16 +357,17 @@ Here comes the conclusion
 % \end{figure}
 
 \end{center}
-\end{frame}
+\end{frame}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \nocite{polonsky2019}
 \nocite{serfling1967}
+\nocite{metcalf2015}
 
 \renewcommand*{\bibfont}{\scriptsize}
 \setbeamertemplate{bibliography item}{\insertbiblabel}
 
-\section{References}
+% \section{References}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {\unnumbered
 \begin{frame}[noframenumbering]{References}
