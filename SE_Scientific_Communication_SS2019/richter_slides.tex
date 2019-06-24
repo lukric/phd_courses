@@ -1,6 +1,6 @@
 \documentclass[table]{beamer}\usepackage[]{graphicx}\usepackage[]{color}
-% maxwidth is the original width if it is less than linewidth
-% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
 \makeatletter
 \def\maxwidth{ %
   \ifdim\Gin@nat@width>\linewidth
@@ -102,7 +102,7 @@
 
 
 %%%%
-\title{Modelling in public health}
+\title{Modelling in Public Health}
 \subtitle{SE Scientific Communication, 2019}
 \author{Lukas Richter}
 \date[]{28. June 2019}
@@ -124,7 +124,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {\unnumbered
-\begin{frame}[noframenumbering]
+\begin{frame}[noframenumbering]{Content}
   \tableofcontents
 \end{frame}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -133,19 +133,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Background}
 
-Infectious diseases are a threat to human health \\
-cost lifes and also money
-
-Outbreaks \\
-``sporadic'' cases \\
-
-different transmission chains
+Infectious diseases are a serious \textbf{burden} for human health \\
+\vspace{0.3cm}
+Results in \textbf{loss of QUALYs} and also money \\ % quality-adjusted life year
+\vspace{0.3cm}
+WHO: \textbf{50,000 deaths per day} due to infectious diseases \\ % many are preventable (vaccines) or curable
+\vspace{0.3cm}
+Outbreaks vs endemic infection \\ % infection is constantly maintained at a baseline level in a geographic area without external inputs (steady state)
+\vspace{0.3cm}
+Different chains \textbf{transmission}:
 \begin{figure}
-  \centering
+  \flushleft
   % \caption{Example of outbreak analytics workflow.}
-  \includegraphics[width=0.7\textwidth,keepaspectratio]{disease-transmission_med.jpeg}
+  \includegraphics[width=0.85\textwidth,keepaspectratio]{disease-transmission_med.jpeg}
 \end{figure}
-
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -157,19 +158,19 @@ different transmission chains
 \begin{frame}[fragile]{Outbreaks}
 
 \begin{block} {Influenza pandemic ``swine flu''}
-Global, 2009-2010, 100.000--400.000 deaths
+Global, 2009-2010, 100,000 -- 400,000 deaths
 \end{block}
 \begin{block} {Ebola}
 % MERS-Cov (Middle-East Respiratory Syndrome) \\
-West Africa, 2014-2016, 11.000 deaths \\
-DRC, since 2018, 1.900 deaths
+West Africa, 2014-2016, 11,000 deaths \\
+DRC, since 2018, 1,900 deaths
 \end{block}
 \begin{block} {Zika Virus}
-Brazil, 2015-2016, ca. 215.000 cases (CHECK!) wolrdwide
+Brazil, 2015-2016, ca. 215,000 cases (CHECK!) wolrdwide
 \end{block}
 \begin{block} {Measles}
-Europe, 2019, ca. 6.300 cases \\
-Austria, 2019, more than 120 cases
+Europe, 2019, ca. 6,300 cases from Jan--Apr \\ % Romania, Lithuania, Italy, Poland, Bulgaria, Czech Republic, France, Greece, Slovakia
+Austria, 2019, more than 130 cases up to this week
 \end{block}
 
 \end{frame}
@@ -177,23 +178,34 @@ Austria, 2019, more than 120 cases
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Objective/Goal}
+\begin{frame}[fragile]{How can modellers help?}
 
-during outbreak: \\
-exploit all data \\
-inform response team in real time \\
+% \textbf{How can modellers help?} \\
+% \vspace{0.3cm}
+Outbreak situations: \\
+\vspace{0.1cm}
+\hspace{0.5cm} Exploit all data \\
+\vspace{0.1cm}
+\hspace{0.5cm} Inform response team in real time \\
+\vspace{0.3cm}
 
-non outbreak situations: \\
-health programmes are usually implemented over a long period of time with broad benefits to many in the community \\
-find high impact and cost-effective interventions \\
-allow evidence based decisions \\
-policy evaluation (vaccine programmes, WHO disease elimination targets) \\ % HIV-AIDS, Hepatitis C
+Non outbreak situations: \\
+\vspace{0.1cm}
+\hspace{0.5cm} Evaluate health programmes (vaccination, WHO elimination targets) \\ % HIV-AIDS, Hepatitis C
+\vspace{0.1cm}
+\hspace{0.5cm} Find high impact and cost-effective interventions \\
+\vspace{0.1cm}
+\hspace{0.5cm} Allow evidence based decisions \\
+\vspace{0.3cm}
 
-benefits of model: \\
-cheap: Clinical trials are seldom large enough to capture these effects \\
-often little or no data to analyse (new emerging diseases)\\
+Benefits of modelling: \\
+\vspace{0.1cm}
+\hspace{0.5cm} Cheap: Clinical trials are expensive and seldom large enough \\
+\vspace{0.1cm}
+\hspace{0.5cm} Often little or no data to analyse (new emerging diseases) \\ % WHO: At least 30 new diseases have emerged in the last 20 years
+\vspace{0.3cm}
 
-mathematical models can help to assess potential threats and impacts early in the process, and later aid in interpreting data from complex and multifactorial systems
+% mathematical models can help to assess potential threats and impacts early in the process, and later aid in interpreting data from complex and multifactorial systems
 
 % The World Health Organisation's definition of public health refers to all organized measures to prevent disease, promote health, and prolong life among the population as a whole (World Health Organization, 2014). Mathematical modelling plays an increasingly important role in helping to guide the most high impact and cost-effective means of achieving these goals. Public health programmes are usually implemented over a long period of time with broad benefits to many in the community. Clinical trials are seldom large enough to capture these effects. Observational data may be used to evaluate a programme after it is underway, but have limited value in helping to predict the future impact of a proposed policy. Furthermore, public health practitioners are often required to respond to new threats, for which there is little or no previous data on which to assess the threat. Computational and mathematical models can help to assess potential threats and impacts early in the process, and later aid in interpreting data from complex and multifactorial systems. As such, these models can be critical tools in guiding public health action. However, there are a number of challenges in achieving a successful interface between modelling and public health. Here, we discuss some of these challenges.
 
@@ -203,55 +215,101 @@ mathematical models can help to assess potential threats and impacts early in th
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Types of models}
 
-dynamic, mathematical (SIR) \\
-statistical (e.g. Poisson regression) \\
-Bayesian statistics \\
-spacial stats/models \\
-
--> visualise outcome / communication
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Example of outbreak analytics workflow.}
-\begin{center}
+\begin{block}{Statistical}
+\begin{minipage}{.49\textwidth}
 \begin{figure}
-  \centering
+  \flushleft
   % \caption{Example of outbreak analytics workflow.}
-  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{polonsky2019_Fig2.png}
+  \includegraphics[width=0.9\textwidth,keepaspectratio]{statistics2.png}
 \end{figure}
-\end{center}
+\end{minipage}
+%%%%%%%%%%
+\begin{minipage}{.49\textwidth}
+Descriptive \par
+\vspace{0.1cm}
+Regression \par
+\vspace{0.1cm}
+Bayesian statistics \par
+\vspace{0.1cm}
+Spatial models
+\end{minipage} \hfill
+\end{block}
+%%%%%%%%%%%%%%%%%%%%
+\begin{block}{Mathematical}
+\begin{minipage}{.49\textwidth}
+\begin{figure}
+  \flushleft
+  % \caption{Example of outbreak analytics workflow.}
+  \includegraphics[width=0.9\textwidth,keepaspectratio]{sir2.png}
+\end{figure}
+\end{minipage} \hfill %\par\vspace{0.5cm}
+%%%%%%%%%%
+\begin{minipage}{.49\textwidth}
+Dynamic, compartmental (SIR) \par %  origin is in the early 20th century
+\vspace{0.1cm}
+Stochastic - Markov chain \par
+\vspace{0.1cm}
+Deterministic \par
+\vspace{0.1cm}
+Agent-based
+\end{minipage}
+\end{block}
+%%%%%%%%%%%%%%%%%%%%
+
+% \vspace{1cm}
+% -> visualise outcome / communication
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}[fragile]{Example of outbreak analytics workflow.}
+% \begin{center}
+% \begin{figure}
+%   \centering
+%   % \caption{Example of outbreak analytics workflow.}
+%   \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{polonsky2019_Fig2.png}
+% \end{figure}
+% \end{center}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Statistical models}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Intervention effect - Invasive Pneumococcal Disease (IPD)}
-\begin{center}
-\begin{figure}
-  \centering
-  \caption{Monthly incidence of (A) PCV10 ST-IPD and (B) non-PCV10 ex ST 6A-/19A-IPD, among the $\ge$50 years old, observed and modelled by a segmented negative binominal regression, Austria, January 2009-February 2017, shown are overall and seasonal trends.}
-  \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{richter2019_Fig3.png}
-\end{figure}
-\end{center}
 
-\vfill
-{\scriptsize \cite{richter2019}}
+
+  Streptococcus pneumoniae-related infections:\\
+  among children main cause of
+
+    meningitis
+    bacterial pneumonia
+    sepsis
+
+  90 distinct pneumococcal serotypes
+  Only a small number account for invasive pneumococcal disease (IPD)
+  January 2012: pneumococcal conjugate vaccine introduced in the national childhood immunisation program:
+
+    covering 10 serotypes (PCV10)
+    administered at 3rd, 5th and 12th month of life
+    unded
+ 
+  Other vaccines: PCV13, PPV23
+
+
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{IPD2}
-
+\begin{frame}[fragile]{IPD - The Model}
 \begin{block}{Serfling-like Model}
 \begin{align*}
 \begin{split}
 \Log{Y_t}\, =
-  &\, \Log{\mli{pop}_t} + \beta_0+\beta_1\,t + \beta_2\,\Sin{\frac{2 \pi t}{12}} \\
-  &+ \beta_3\,\Cos{\frac{2 \pi t}{12}} + \beta_5\,\left(t-t_0\right)^+ \\
-  &+\, \mathbbm{1}_{t-t_0>0} \left[\beta_4 + \beta_6\,\sin\left(\frac{2 \pi t}{12}\right) + \,\beta_7\,\cos\left(\frac{2 \pi t}{12}\right)\right]
+  &\, \beta_0+\beta_1\,t + \beta_2\,\Sin{\frac{2 \pi t}{12}} + \beta_3\,\Cos{\frac{2 \pi t}{12}} \\
+  &+ \beta_5\left(t-t_0\right)^+ + \mathbbm{1}_{t-t_0>0} \left[\beta_4 + \beta_6\,\sin\left(\frac{2 \pi t}{12}\right) + \beta_7\,\cos\left(\frac{2 \pi t}{12}\right)\right] \\
+  &+ \Log{\mli{pop}_t}
 \end{split}
 \end{align*}
 
@@ -264,11 +322,35 @@ x, &\text{if $x > 0$,}\\
 \end{cases}
 \end{align*}
 \end{block}
+\vfill
+{\scriptsize \cite{richter2019}}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{IPD - Results}
+\begin{center}
+\begin{figure}
+  \centering
+  \caption{Monthly incidence of (A) PCV10 ST-IPD and (B) non-PCV10 ex ST 6A-/19A-IPD, among the $\ge$50 years old, observed and modelled by a segmented negative binominal regression, Austria, January 2009-February 2017, shown are overall and seasonal trends.}
+  \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{richter2019_Fig3.png}
+\end{figure}
+\end{center}
+% \vfill
+% {\scriptsize \cite{richter2019}}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Dynamic models}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Mathematical modelling - Zika Virus} % source: https://www.reconlearn.org/post/practical-vbd.html
+
+Zika introduction
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Transmission model of Zika Virus} % source: https://www.reconlearn.org/post/practical-vbd.html
 
@@ -319,9 +401,7 @@ $E_v$    & Exposed vectors                                                      
 \frac{dI_v}{dt} &= \frac{\beta_v b} {N_h} I_h S_v - \mu_v I_v
 \end{align*}
 \end{variableblock}
-
-\end{minipage}
-\hfill
+\end{minipage}\hfill
 \begin{minipage}{.52\textwidth}
 \vspace{1.5cm}
 \begin{figure}
@@ -333,50 +413,12 @@ $E_v$    & Exposed vectors                                                      
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}[fragile]{blah} %
-% \begin{center}
-% \begin{figure}
-%   \centering
-%   \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{SImodel.png}
-% \end{figure}
-% \end{center}
-% \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}[fragile]{Zika2} % source: https://www.reconlearn.org/post/practical-vbd.html
-% <<eval = FALSE, echo = TRUE>>=
-% Lv       <-        # life span of mosquitos (in days)
-% Lh       <-        # life span of humans (in days)
-% Iph      <-        # Infectious period in humans (in days)
-% IP       <-        # Infectious period in vectors (in days)
-% EIP      <-        # Extrinsic incubation period in adult mosquitos
-% muv      <-        # mortality of mosquitos
-% muh      <-        # mortality of humans
-% gamma    <-        # recovery rate in humans
-% delta    <-        # extrinsic incubation rate
-% b        <-        # Biting Rate
-% betah    <-        # Probability of transmission from vector to host
-% betav    <-        # Probability of transmission from host to vector
-% Nh       <-        # Number of humans (Population of Cali 2.4 million)
-% m        <-        # Vector to human ratio
-% Nv       <-        # Number of vectors
-% R0       <-        # Reproductive number
-% b        <-        sqrt((R0 ^2 * muv*(muv+delta) * (muh+gamma)) /
-%                    (m * betah * betav * delta)) # biting rate
-% 
-% TIME     <-        # Number of years to run the simulation for 
-% @
-% 
-% \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{other applications}
-GO \\
+Sexually transmitted infections \\
 Ebola \\
+Malaria \\
 
 Influenza (Nielsen) \cite{nielsen2019} \\
 Foodborne outbreaks to identify the source of infection (poisson model)
@@ -430,7 +472,7 @@ still a lot to do - However, there are a number of challenges in achieving a suc
 \renewcommand*{\bibfont}{\scriptsize}
 \setbeamertemplate{bibliography item}{\insertbiblabel}
 
-% \section{References}
+\section*{References}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {\unnumbered
 \begin{frame}[noframenumbering, shrink=30]{References}
