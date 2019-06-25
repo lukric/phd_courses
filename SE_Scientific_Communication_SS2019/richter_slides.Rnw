@@ -2,6 +2,7 @@
 
 %\setbeamertemplate{background}{\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{ages_background2.png}}
 
+
 \usepackage[ngerman,english]{babel}
 \usepackage{lmodern} % schrift besser lesbar
 \usepackage[T1]{fontenc}
@@ -42,6 +43,8 @@
   \setbeamercolor{block body}{#2}
   \setbeamercolor{block title}{#3}
   \begin{block}{#1}}{\end{block}}
+  
+\setbeamercovered{invisible} % hide paused elements
   
 \begin{document}
 \graphicspath{{figures/}}
@@ -110,7 +113,7 @@ WHO: \textbf{50,000 deaths per day} due to infectious diseases \\ % many are pre
 \vspace{0.3cm}
 Outbreaks vs endemic infection \\ % infection is constantly maintained at a baseline level in a geographic area without external inputs (steady state)
 \vspace{0.3cm}
-Different chains \textbf{transmission}:
+Different chains of \textbf{transmission}:
 \begin{figure}
   \flushleft
   % \caption{Example of outbreak analytics workflow.}
@@ -247,32 +250,70 @@ Agent-based
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Intervention effect - Invasive Pneumococcal Disease (IPD)}
 
-
-  Streptococcus pneumoniae-related infections:\\
-  among children main cause of
-
-    meningitis
-    bacterial pneumonia
-    sepsis
-
-  90 distinct pneumococcal serotypes
-  Only a small number account for invasive pneumococcal disease (IPD)
-  January 2012: pneumococcal conjugate vaccine introduced in the national childhood immunisation program:
-
-    covering 10 serotypes (PCV10)
-    administered at 3rd, 5th and 12th month of life
-    unded
- 
-  Other vaccines: PCV13, PPV23
-
-
-
+\begin{minipage}{.6\textwidth}
+Caused by \textit{\textbf{Streptococcus pneumoniae}} \par
+\vspace{0.25cm}
+90 distinct pneumococcal serotypes \par % Only a small number account for IPD
+\vspace{0.25cm}
+Highest burden: \textbf{infants} and \textbf{elderly} \par %<2 and 50+, meningitis, bacterial pneumonia, sepsis
+\vspace{0.25cm}
+% Disease: \\
+% \hspace*{0.5cm} meningitis \\
+% \hspace*{0.5cm} bacterial pneumonia \\
+% \hspace*{0.5cm} sepsis \par
+% \vspace{0.1cm}
+Pneumococcal conjugate \textbf{vaccine introduced} in 2012 in AT for children\par % covering 10 serotypes (PCV10), 3 doses in the first year
+% \hspace*{0.5cm} covering 10 serotypes (PCV10) \\
+% \hspace*{0.5cm} 3 doses in the first year
+\end{minipage} \hfill
+\begin{minipage} {.39\textwidth}
+\begin{figure}
+  \centering
+  % \caption{Example of outbreak analytics workflow.}
+  \includegraphics[width=0.6\textwidth,keepaspectratio]{streptococcuspneumoniaebacte.jpg}
+  \includegraphics[width=0.9\textwidth,keepaspectratio]{frauengenerationen2.jpg}
+  %\includegraphics[width=0.6\textwidth,keepaspectratio]{vaccination.jpg}
+\end{figure}
+\end{minipage} \par
+\vspace{1cm}
+\pause
+\begin{variableblock}{}{}{} \centering
+\textbf{Vaccine effect? Direct? Indirect (elderly)?}
+\end{variableblock}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{frame}[fragile]{Segmented Regression - The Model}
+% \begin{block}{Serfling-like Model}
+% \setlength\abovedisplayskip{0pt}
+% \begin{align*}
+% \begin{split}
+% \Log{Y_t}\, =
+%   &\, \beta_0+\beta_1\,t + \beta_2\,\Sin{\frac{2 \pi t}{12}} + \beta_3\,\Cos{\frac{2 \pi t}{12}} \\
+%   &+ \beta_5\left(t-t_0\right)^+ + \mathbbm{1}_{t-t_0>0} \left[\beta_4 + \beta_6\,\sin\left(\frac{2 \pi t}{12}\right) + \beta_7\,\cos\left(\frac{2 \pi t}{12}\right)\right] \\
+%   &+ \Log{\mli{pop}_t}
+% \end{split}
+% \end{align*}
+% 
+% with
+% \begin{flalign*}
+% (x)^+ &= 
+% \begin{cases}
+% x, &\text{if $x > 0$,}\\
+% 0, &\text{otherwise.}
+% \end{cases} &
+% \end{flalign*}
+% \end{block}
+% \vfill
+% {\scriptsize \cite{richter2019}}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{IPD - The Model}
+\begin{frame}[fragile]{Segmented Regression - The Model}
 \begin{block}{Serfling-like Model}
+\setlength\abovedisplayskip{0pt}
 \begin{align*}
 \begin{split}
 \Log{Y_t}\, =
@@ -281,16 +322,23 @@ Agent-based
   &+ \Log{\mli{pop}_t}
 \end{split}
 \end{align*}
-
+\end{block}
+\begin{minipage}[b]{0.35\textwidth}
 with
-\begin{align*} 
-(x)^+ = 
+\begin{flalign*}
+(x)^+ &= 
 \begin{cases}
 x, &\text{if $x > 0$,}\\
 0, &\text{otherwise.}
-\end{cases}
-\end{align*}
-\end{block}
+\end{cases} &
+\end{flalign*}
+\end{minipage} \hfill
+\begin{minipage}{0.63\textwidth}
+\begin{figure}
+  \centering
+  \includegraphics[width=.75\textwidth,keepaspectratio]{segmented_regr_example2.jpg}
+\end{figure}
+\end{minipage} \par
 \vfill
 {\scriptsize \cite{richter2019}}
 \end{frame}
@@ -301,12 +349,12 @@ x, &\text{if $x > 0$,}\\
 \begin{center}
 \begin{figure}
   \centering
-  \caption{Monthly incidence of (A) PCV10 ST-IPD and (B) non-PCV10 ex ST 6A-/19A-IPD, among the $\ge$50 years old, observed and modelled by a segmented negative binominal regression, Austria, January 2009-February 2017, shown are overall and seasonal trends.}
+  \caption{Monthly incidence of (A) \textbf{vaccine type} IPD (B) \textbf{non vaccine type} IPD, among the \textbf{$\ge$50 years old}, observed and modelled, Austria}
   \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{richter2019_Fig3.png}
 \end{figure}
 \end{center}
-% \vfill
-% {\scriptsize \cite{richter2019}}
+\vfill
+{\scriptsize \cite{richter2019}}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -357,6 +405,7 @@ $E_v$    & Exposed vectors                                                      
 \begin{minipage}{.45\textwidth}
 \definecolor{my_blue}{rgb}{0.616, 0.765, 0.902}
 \begin{variableblock}{Humans/Host}{bg=my_blue!30,fg=black}{bg=my_blue,fg=black}
+\setlength\abovedisplayskip{0pt}
 \begin{align*}
 \frac{dS_h}{dt} &= \mu_h N_h - \frac {\beta_h b}{N_h} S_h  I_v - \mu_h  S_h \\
 \frac{dI_h}{dt} &= \frac {\beta_h b}{N_h}S_h I_v - (\gamma_h + \mu_h) I_h \\
@@ -365,6 +414,7 @@ $E_v$    & Exposed vectors                                                      
 \end{variableblock}
 \definecolor{my_green}{rgb}{0.663, 0.82, 0.557}
 \begin{variableblock}{Vectors}{bg=my_green!30,fg=black}{bg=my_green,fg=black}
+\setlength\abovedisplayskip{0pt}
 \begin{align*}
 \frac{dS_v}{dt} &= \mu_v N_v  - \frac{\beta_v b} {N_h} I_h S_v - \mu_v S_v \\
 \frac{dI_v}{dt} &= \frac{\beta_v b} {N_h} I_h S_v - \mu_v I_v
@@ -376,40 +426,57 @@ $E_v$    & Exposed vectors                                                      
 \begin{figure}
   \hfill \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{SImodel.png}
 \end{figure}
-\vspace{1cm} {\raggedright\tiny adapted from\\ \url{https://www.reconlearn.org/} and ~\cite{ferguson2016} \par}
+\vspace{1cm} {\raggedright\tiny adapted from \\ \url{https://www.reconlearn.org/} and ~\cite{ferguson2016} \par}
 \end{minipage}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{other applications}
-Sexually transmitted infections \\
-Ebola \\
-Malaria \\
-
-Influenza (Nielsen) \cite{nielsen2019} \\
-Foodborne outbreaks to identify the source of infection (poisson model)
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Conclusion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Other Applications}
+\begin{minipage}{.4\textwidth}
+\begin{variableblock}{}{}{} \centering
+Sexually transmitted infections (STI)
+\end{variableblock} \par \vspace{.7cm}
+\begin{variableblock}{}{}{} \centering
+Ebola
+\end{variableblock} \par \vspace{.7cm}
+\begin{variableblock}{}{}{} \centering
+Malaria
+\end{variableblock}
+\end{minipage} \hspace{1cm}
+\begin{minipage}{.4\textwidth}
+\begin{variableblock}{}{}{} \centering
+Influenza mortality \nocite{nielsen2019} \\
+\end{variableblock} \par \vspace{.7cm}
+\begin{variableblock}{}{}{} \centering
+Foodborne outbreaks % to identify the source of infection (poisson model)
+\end{variableblock} \par \vspace{.7cm}
+\begin{variableblock}{}{}{} \centering
+Tuberculosis
+\end{variableblock} \par \vspace{.7cm}
+\begin{variableblock}{}{}{} \centering
+Hepatitis C elimination
+\end{variableblock}
+\end{minipage}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Conclusion/Wrap up}
 
-
-
-We saw some examples of applied modelling\\
-plays an increasingly important role in helping to guide the most high impact and cost-effective prevent disease\\
-models can be critical tools in guiding public health action.\\
-
-
-always comes with limitations (as other studies)\\
-decision makers benefit, so do the affected people
-still a lot to do - However, there are a number of challenges in achieving a successful interface between modelling and public health.
-
+We saw some examples of applied modelling \\
+\vspace{0.3cm}
+Modelling plays an increasingly important role in helping to guide the most high impact and cost-effective prevent disease \\
+\vspace{0.3cm}
+models can be critical tools in guiding public health action. \\
+\vspace{0.3cm}
+Always comes with limitations \\ % (as other studies)
+\vspace{0.3cm}
+Decision makers benefit - so do the affected people \\
+\vspace{0.3cm}
+still a lot to do - a number of challenges in achieving a successful interface between modelling and public health
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -424,7 +491,7 @@ still a lot to do - However, there are a number of challenges in achieving a suc
   \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{Thank-you-word-cloud.jpg}
 \end{figure}
 
-\Huge{\textbf{Any questions?}}
+\pause \Huge{\textbf{Any questions?}}
 % \begin{figure}
 %   \centering
 %   \includegraphics[width=\textwidth,height=0.1\textheight,keepaspectratio]{questions.png}
