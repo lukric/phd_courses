@@ -1,4 +1,4 @@
-\documentclass[table]{beamer}
+\documentclass[table,notes]{beamer}
 
 %\setbeamertemplate{background}{\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{ages_background2.png}}
 
@@ -14,6 +14,7 @@
 \usepackage{bbm} % "Blackboard-style" cm fonts
 \usepackage{xcolor}
 \usepackage{colortbl}
+\usepackage{subcaption}
 
 \usepackage[backend = bibtex, natbib = true, style = numeric, sorting = none, citestyle = authoryear]{biblatex}
 \addbibresource{../../diss_tex/references/mybib.bib}
@@ -89,6 +90,7 @@ opts_chunk$set(concordance = TRUE,
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {\unnumbered
+% \usebackgroundtemplate{\includegraphics[height=\paperheight]{outbreak.jpg}}%
 \begin{frame}[noframenumbering]
   \titlepage
 \end{frame}}
@@ -107,11 +109,11 @@ opts_chunk$set(concordance = TRUE,
 
 Infectious diseases are a serious \textbf{burden} for human health \\
 \vspace{0.3cm}
-Results in \textbf{loss of QUALYs} and also money \\ % quality-adjusted life year
+\textbf{Loss of QUALYs} and also money \\ % quality-adjusted life year
 \vspace{0.3cm}
 WHO: \textbf{50,000 deaths per day} due to infectious diseases \\ % many are preventable (vaccines) or curable
 \vspace{0.3cm}
-Outbreaks vs endemic infection \\ % infection is constantly maintained at a baseline level in a geographic area without external inputs (steady state)
+Outbreaks vs endemic infection \\ % infection is constantly maintained at a baseline level in a geographic area without external inputs (steady state) / regularly found among particular people or in a certain area.
 \vspace{0.3cm}
 Different chains of \textbf{transmission}:
 \begin{figure}
@@ -122,6 +124,13 @@ Different chains of \textbf{transmission}:
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+QUALY = quality-adjusted life year \\
+\vspace{0.3cm}
+many are preventable (vaccines) or curable\\
+\vspace{0.3cm}
+infection is constantly maintained at a baseline level in a geographic area without external inputs (steady state) / regularly found among particular people or in a certain area.
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {
@@ -130,15 +139,15 @@ Different chains of \textbf{transmission}:
 \begin{frame}[fragile]{Outbreaks}
 
 \begin{block} {Influenza pandemic ``swine flu''}
-Global, 2009-2010, 100,000 -- 400,000 deaths
+Global, 2009--2010, 100,000 -- 400,000 deaths
 \end{block}
 \begin{block} {Ebola}
 % MERS-Cov (Middle-East Respiratory Syndrome) \\
-West Africa, 2014-2016, 11,000 deaths \\
+West Africa, 2014--2016, 11,000 deaths \\
 DRC, since 2018, 1,900 deaths
 \end{block}
 \begin{block} {Zika Virus}
-Brazil, 2015-2016, estimated 1 Mio cases in Brazil only and 2,000 confirmed severe complications in newborns
+Brazil, 2015--2016, estimated 1 Mio cases in Brazil only and 2,000 confirmed severe complications in newborns
 \end{block}
 \begin{block} {Measles}
 Europe, 2019, ca. 6,300 cases from Jan--Apr \\ % Romania, Lithuania, Italy, Poland, Bulgaria, Czech Republic, France, Greece, Slovakia
@@ -148,6 +157,13 @@ Austria, 2019, more than 130 cases up to this week
 \end{frame}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+Flu: this time: not more than usual season (see also Spanish flu 1918), 10-15 weeks earlier then normal \\
+\vspace{0.3cm}
+Ebola: CFR up to 40\% \\
+\vspace{0.3cm}
+Measles EU: Romania, Lithuania, Italy, Poland, Bulgaria, Czech Republic, France, Greece, Slovakia
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{How can modellers help?}
@@ -185,6 +201,15 @@ Austria, 2019, more than 130 cases up to this week
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+WHO elimination target for HIV-AIDS, Hepatitis C \\
+\vspace{0.3cm}
+mathematical models can help to assess potential threats and impacts early in the process, and later aid in interpreting data \\
+\vspace{0.3cm}
+Public health programmes are usually implemented over a long period of time with broad benefits to many in the community. \\
+\vspace{0.3cm}
+WHO: over 30 new diseases emerged in the last 20 years
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Types of models}
@@ -193,7 +218,6 @@ Austria, 2019, more than 130 cases up to this week
 \begin{minipage}{.49\textwidth}
 \begin{figure}
   \flushleft
-  % \caption{Example of outbreak analytics workflow.}
   \includegraphics[width=0.9\textwidth,keepaspectratio]{statistics2.png}
 \end{figure}
 \end{minipage}
@@ -213,13 +237,13 @@ Spatial models
 \begin{minipage}{.49\textwidth}
 \begin{figure}
   \flushleft
-  % \caption{Example of outbreak analytics workflow.}
   \includegraphics[width=0.9\textwidth,keepaspectratio]{sir2.png}
+  % https://plus.maths.org/content/mathematics-diseases
 \end{figure}
 \end{minipage} \hfill %\par\vspace{0.5cm}
 %%%%%%%%%%
 \begin{minipage}{.49\textwidth}
-Dynamic, compartmental (SIR) \par %  origin is in the early 20th century
+Dynamic, compartmental (SIR) \par % origin is in the early 20th century
 \vspace{0.1cm}
 Stochastic - Markov chain \par
 \vspace{0.1cm}
@@ -234,6 +258,11 @@ Agent-based
 % -> visualise outcome / communication
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+Dynamic models: origin is in the early 20th century \\
+\vspace{0.3cm}
+Modelling: higher influence with increasing computer power
+}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \begin{frame}[fragile]{Example of outbreak analytics workflow.}
@@ -249,31 +278,24 @@ Agent-based
 
 \section{Statistical models}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Intervention effect - Invasive Pneumococcal Disease (IPD)}
+\begin{frame}[fragile]{Intervention effect -- Invasive Pneumococcal Disease (IPD)}
 
 \begin{minipage}{.6\textwidth}
 Caused by \textit{\textbf{Streptococcus pneumoniae}} \par
 \vspace{0.25cm}
 90 distinct pneumococcal serotypes \par % Only a small number account for IPD
 \vspace{0.25cm}
-Highest burden: \textbf{infants} and \textbf{elderly} \par %<2 and 50+, meningitis, bacterial pneumonia, sepsis
+Highest burden: \textbf{infants} and \textbf{elderly} \par % <2 and 50+, meningitis, bacterial pneumonia, sepsis
 \vspace{0.25cm}
-% Disease: \\
-% \hspace*{0.5cm} meningitis \\
-% \hspace*{0.5cm} bacterial pneumonia \\
-% \hspace*{0.5cm} sepsis \par
-% \vspace{0.1cm}
-Pneumococcal conjugate \textbf{vaccine introduced} in 2012 in AT for children\par % covering 10 serotypes (PCV10), 3 doses in the first year
-% \hspace*{0.5cm} covering 10 serotypes (PCV10) \\
-% \hspace*{0.5cm} 3 doses in the first year
+Pneumococcal conjugate \textbf{vaccine introduced} in 2012 in AT for children \par % covering 10 serotypes (PCV10), 3 doses in the first year
 \end{minipage} \hfill
 \begin{minipage} {.39\textwidth}
 \begin{figure}
   \centering
-  % \caption{Example of outbreak analytics workflow.}
   \includegraphics[width=0.6\textwidth,keepaspectratio]{streptococcuspneumoniaebacte.jpg}
+  % https://de.depositphotos.com/125780850/stock-photo-streptococcus-pneumoniae-bacteria.html
   \includegraphics[width=0.9\textwidth,keepaspectratio]{frauengenerationen2.jpg}
-  %\includegraphics[width=0.6\textwidth,keepaspectratio]{vaccination.jpg}
+  % https://de.dreamstime.com/stock-abbildung-frauengenerationen-image49120752
 \end{figure}
 \end{minipage} \par
 \vspace{1cm}
@@ -283,6 +305,19 @@ Pneumococcal conjugate \textbf{vaccine introduced} in 2012 in AT for children\pa
 \end{variableblock}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+s. pneumoniae: bacteria \\
+\vspace{0.3cm}
+Serotypes: Only a small number account for IPD \\
+\vspace{0.3cm}
+Risk: <2 and 50+ \\
+\vspace{0.3cm}
+can result in: meningitis, bacterial pneumonia, sepsis \\
+\vspace{0.3cm}
+vaccine: covering 10 serotypes (PCV10) \\
+\vspace{0.3cm}
+3 doses in the first year (3rd, 5th, 12th month)
+}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \begin{frame}[fragile]{Segmented Regression - The Model}
@@ -312,7 +347,7 @@ Pneumococcal conjugate \textbf{vaccine introduced} in 2012 in AT for children\pa
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Segmented Regression - The Model}
+\begin{frame}[fragile]{IPD -- A Segmented Regression Model}
 \begin{block}{Serfling-like Model}
 \setlength\abovedisplayskip{0pt}
 \begin{align*}
@@ -338,6 +373,7 @@ x, &\text{if $x > 0$,}\\
 \begin{figure}
   \centering
   \includegraphics[width=.75\textwidth,keepaspectratio]{segmented_regr_example2.jpg}
+  %\subcaption*{\tiny Source: \cite{ramsay2003}}
 \end{figure}
 \end{minipage} \par
 \vfill
@@ -346,7 +382,7 @@ x, &\text{if $x > 0$,}\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{IPD - Results}
+\begin{frame}[fragile]{IPD -- Results}
 \begin{center}
 \begin{figure}
   \centering
@@ -361,17 +397,17 @@ x, &\text{if $x > 0$,}\\
 
 \section{Dynamic models}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Mathematical modelling - Zika Virus} % source: https://www.reconlearn.org/post/practical-vbd.html
+\begin{frame}[fragile]{Mathematical modelling -- Zika Virus} % source: https://www.reconlearn.org/post/practical-vbd.html
 
 \begin{minipage}{.6\textwidth}
-Humans are infected by \textbf{mosquitos} \par
+Humans infected by \textbf{mosquitos} \par
 \hspace*{0.5cm} daytime-active \textit{Aedes} family \par
 \vspace{0.3cm}
-\textbf{Latin American} Zika epidemic in 2016 \par
+\textbf{Latin American} Zika epidemic (Feb 2016) \par
 \vspace{0.1cm}
 \hspace*{0.5cm} Summer Olympics in Rio \par % worldwide travel
 \vspace{0.1cm}
-\hspace*{0.5cm} \textbf{Global transmission} to about 75 countries \par
+\hspace*{0.5cm} \textbf{Global transmission} (75 countries) \par
 \vspace{0.1cm}
 \hspace*{0.5cm} e.g.\ \textit{A.\ albopictus} \textbf{found in AT} in 2012 \par
 \vspace{0.3cm} 
@@ -386,10 +422,10 @@ Dangerous for \textbf{foetuses and neonates} \par
 \end{minipage} \hfill
 \begin{minipage} {.37\textwidth}
 \begin{figure}
+  \caption{\textit{Aedes aegypti}}
   \centering
-  % \caption{Example of outbreak analytics workflow.}
   \includegraphics[width=\textwidth,keepaspectratio]{Aedes_aegypti.jpg}
-  %\includegraphics[width=0.6\textwidth,keepaspectratio]{vaccination.jpg}
+  \subcaption*{\tiny Source: Muhammad Mahdi Karim, \url{https://commons.wikimedia.org/w/index.php?curid=9556152}}
 \end{figure}
 \end{minipage}
 
@@ -422,7 +458,7 @@ $E_v$    & Exposed vectors                                                      
 \begin{figure}
   \hfill \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{SImodel.png}
 \end{figure}
-\vspace{1cm} {\raggedright\tiny adapted from\\ \url{https://www.reconlearn.org/} and ~\cite{ferguson2016} \par}
+\vspace{1cm} {\raggedright\tiny adapted from \\ \url{https://www.reconlearn.org/} and ~\cite{ferguson2016} \par}
 \end{minipage}
 
 \end{frame}
@@ -523,17 +559,22 @@ Hepatitis C elimination
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Conclusion}
 
-We presented two examples of applied modelling \\
+% We presented two examples of applied modelling \\
+% \vspace{0.3cm}
+Modelling plays an \textbf{increasingly important} role in helping to guide the most high \textbf{impact} and \textbf{cost-effective} preventions. \\
 \vspace{0.3cm}
-Modelling plays an \textbf{increasingly important} role in helping to guide the most high \textbf{impact} and \textbf{cost-effective} prevention of disease \\
+It can be a \textbf{critical tool} for guiding public health action. \\
 \vspace{0.3cm}
-Models can be \textbf{critical tools} in guiding public health action. \\
+Model limitations. \\ % (as other studies)
 \vspace{0.3cm}
-Always comes with limitations \\ % (as other studies)
+Decision makers \textbf{benefit} - so does the population. \\
 \vspace{0.3cm}
-Decision makers \textbf{benefit} - so does the affected population \\
-\vspace{0.3cm}
-Still a number of \textbf{challenges} in achieving a successful interface between modelling and public health actors
+Still a number of \textbf{challenges} in achieving a successful interface between modelling and public health actors.
+
+% \begin{figure}
+%   \centering
+%   \includegraphics[width=0.5\textwidth,keepaspectratio]{modelling_public_health_wordcloud.jpg}
+% \end{figure}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -567,7 +608,7 @@ Still a number of \textbf{challenges} in achieving a successful interface betwee
 \section*{References}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {\unnumbered
-\begin{frame}[noframenumbering, shrink=10]{References}
+\begin{frame}[noframenumbering, shrink=20]{References}
   \printbibliography
 \end{frame}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
