@@ -47,7 +47,7 @@
 \setbeamercovered{invisible} % hide paused elements
   
 \begin{document}
-\graphicspath{{figures/}}
+\graphicspath{{img/}}
 %\graphicspath{{../../chapters/figures/IPD/}, {../../chapters/figures/}}
 %\graphicspath{{D:/diss/chapters/figures/IPD/}} %{{\Sexpr{paste0(getwd(), "/chapters/figures/IPD/")}}} %{../figures/IPD/}
 %% initialize %%
@@ -74,8 +74,8 @@ opts_chunk$set(concordance = TRUE,
 @
 
 %%%%
-\title{Modelling in Public Health}
-\subtitle{SE Scientific Communication, 2019}
+\title{\textbf{Modelling in Public Health}}
+\subtitle{SE Scientific Communication \\ Summer 2019}
 \author{Lukas Richter}
 \date[]{\Sexpr{"28. June 2019"}}
 
@@ -138,7 +138,7 @@ West Africa, 2014-2016, 11,000 deaths \\
 DRC, since 2018, 1,900 deaths
 \end{block}
 \begin{block} {Zika Virus}
-Brazil, 2015-2016, ca. 215,000 cases (CHECK!) wolrdwide
+Brazil, 2015-2016, estimated 1 Mio cases in Brazil only and 2,000 confirmed severe complications in newborns
 \end{block}
 \begin{block} {Measles}
 Europe, 2019, ca. 6,300 cases from Jan--Apr \\ % Romania, Lithuania, Italy, Poland, Bulgaria, Czech Republic, France, Greece, Slovakia
@@ -154,25 +154,27 @@ Austria, 2019, more than 130 cases up to this week
 
 % \textbf{How can modellers help?} \\
 % \vspace{0.3cm}
-Outbreak situations: \\
+\underline{Outbreak situations:} \\
 \vspace{0.1cm}
-\hspace{0.5cm} Exploit all data \\
+\hspace{0.5cm} \textbf{Exploit} all available data \\
 \vspace{0.1cm}
-\hspace{0.5cm} Inform response team in real time \\
+\hspace{0.5cm} \textbf{Inform} response team in real time \\
+\vspace{0.1cm}
+\hspace{0.5cm} \textbf{Prioritise} interventions \\
 \vspace{0.3cm}
 
-Non outbreak situations: \\
+\underline{Non outbreak situations:} \\
 \vspace{0.1cm}
-\hspace{0.5cm} Evaluate health programmes (vaccination, WHO elimination targets) \\ % HIV-AIDS, Hepatitis C
+\hspace{0.5cm} \textbf{Evaluate} health programmes (vaccination, WHO elimination targets) \\ % HIV-AIDS, Hepatitis C
 \vspace{0.1cm}
-\hspace{0.5cm} Find high impact and cost-effective interventions \\
+\hspace{0.5cm} Find \textbf{high impact and cost-effective} interventions \\
 \vspace{0.1cm}
-\hspace{0.5cm} Allow evidence based decisions \\
+\hspace{0.5cm} Allow \textbf{evidence} based decisions \\
 \vspace{0.3cm}
 
-Benefits of modelling: \\
+\underline{Benefits of modelling:} \\
 \vspace{0.1cm}
-\hspace{0.5cm} Cheap: Clinical trials are expensive and seldom large enough \\
+\hspace{0.5cm} \textbf{Low cost!} Clinical trials are expensive and seldom large enough \\
 \vspace{0.1cm}
 \hspace{0.5cm} Often little or no data to analyse (new emerging diseases) \\ % WHO: At least 30 new diseases have emerged in the last 20 years
 \vspace{0.3cm}
@@ -232,7 +234,6 @@ Agent-based
 % -> visualise outcome / communication
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \begin{frame}[fragile]{Example of outbreak analytics workflow.}
@@ -359,11 +360,39 @@ x, &\text{if $x > 0$,}\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Dynamic models}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Mathematical modelling - Zika Virus} % source: https://www.reconlearn.org/post/practical-vbd.html
 
-Zika introduction
+\begin{minipage}{.6\textwidth}
+Humans are infected by \textbf{mosquitos} \par
+\hspace*{0.5cm} daytime-active \textit{Aedes} family \par
+\vspace{0.3cm}
+\textbf{Latin American} Zika epidemic in 2016 \par
+\vspace{0.1cm}
+\hspace*{0.5cm} Summer Olympics in Rio \par % worldwide travel
+\vspace{0.1cm}
+\hspace*{0.5cm} \textbf{Global transmission} to about 75 countries \par
+\vspace{0.1cm}
+\hspace*{0.5cm} e.g.\ \textit{A.\ albopictus} \textbf{found in AT} in 2012 \par
+\vspace{0.3cm} 
+Mostly \textbf{flu-like} or \textbf{no} symptoms \par
+\vspace{0.3cm} 
+Dangerous for \textbf{foetuses and neonates} \par
+\vspace{0.1cm}
+\hspace*{0.5cm} Brain malformations \par
+\vspace{0.1cm}
+\hspace*{0.5cm} Microcephaly (small head)
+
+\end{minipage} \hfill
+\begin{minipage} {.37\textwidth}
+\begin{figure}
+  \centering
+  % \caption{Example of outbreak analytics workflow.}
+  \includegraphics[width=\textwidth,keepaspectratio]{Aedes_aegypti.jpg}
+  %\includegraphics[width=0.6\textwidth,keepaspectratio]{vaccination.jpg}
+\end{figure}
+\end{minipage}
+
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -404,7 +433,7 @@ $E_v$    & Exposed vectors                                                      
 
 \begin{minipage}{.45\textwidth}
 \definecolor{my_blue}{rgb}{0.616, 0.765, 0.902}
-\begin{variableblock}{Humans/Host}{bg=my_blue!30,fg=black}{bg=my_blue,fg=black}
+\begin{variableblock}{Humans/Host}{bg=my_blue!30,fg=black}{bg=my_blue,fg=black} % stratified by age
 \setlength\abovedisplayskip{0pt}
 \begin{align*}
 \frac{dS_h}{dt} &= \mu_h N_h - \frac {\beta_h b}{N_h} S_h  I_v - \mu_h  S_h \\
@@ -429,6 +458,34 @@ $E_v$    & Exposed vectors                                                      
 \vspace{1cm} {\raggedright\tiny adapted from \\ \url{https://www.reconlearn.org/} and ~\cite{ferguson2016} \par}
 \end{minipage}
 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Zika Virus - Modelling Outcome} % source: https://www.reconlearn.org/post/practical-vbd.html
+% Policy suggestion/recommendation: delay pregnancy
+
+\begin{minipage}{.52\textwidth}
+\textbf{Herd immunity} after first epidemic  \par
+\vspace{0.3cm}
+Epidemic will \textbf{re-occur} every 15-20 yrs \par
+\vspace{0.3cm}
+An epidemic will last about 3-5 yrs \par
+\vspace{0.1cm}
+\hspace*{0.5cm}Shorter on local scale: 6 months \par
+\vspace{0.3cm}
+Develop \textbf{new interventions} before new large-scale outbreaks occur
+\end{minipage} \hfill
+\begin{minipage} {.45\textwidth}
+\begin{figure}
+  \centering
+  % \caption{Example of outbreak analytics workflow.}
+  \includegraphics[width=\textwidth,keepaspectratio]{Zika_results2.jpg}
+  %\includegraphics[width=0.6\textwidth,keepaspectratio]{vaccination.jpg}
+\end{figure}
+\end{minipage}\par
+\vfill
+{\scriptsize \cite{ferguson2016}}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -464,23 +521,22 @@ Hepatitis C elimination
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]{Conclusion/Wrap up}
+\begin{frame}[fragile]{Conclusion}
 
-We saw some examples of applied modelling \\
+We presented two examples of applied modelling \\
 \vspace{0.3cm}
-Modelling plays an increasingly important role in helping to guide the most high impact and cost-effective prevent disease \\
+Modelling plays an \textbf{increasingly important} role in helping to guide the most high \textbf{impact} and \textbf{cost-effective} prevention of disease \\
 \vspace{0.3cm}
-models can be critical tools in guiding public health action. \\
+Models can be \textbf{critical tools} in guiding public health action. \\
 \vspace{0.3cm}
 Always comes with limitations \\ % (as other studies)
 \vspace{0.3cm}
-Decision makers benefit - so do the affected people \\
+Decision makers \textbf{benefit} - so does the affected population \\
 \vspace{0.3cm}
-still a lot to do - a number of challenges in achieving a successful interface between modelling and public health
+Still a number of \textbf{challenges} in achieving a successful interface between modelling and public health actors
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {\unnumbered
@@ -511,7 +567,7 @@ still a lot to do - a number of challenges in achieving a successful interface b
 \section*{References}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {\unnumbered
-\begin{frame}[noframenumbering, shrink=30]{References}
+\begin{frame}[noframenumbering, shrink=10]{References}
   \printbibliography
 \end{frame}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
