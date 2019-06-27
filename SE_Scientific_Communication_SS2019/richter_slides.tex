@@ -1,4 +1,5 @@
-\documentclass[table,notes]{beamer}\usepackage[]{graphicx}\usepackage[]{color}
+% \documentclass[table,notes=only]{beamer}
+\documentclass[table]{beamer}\usepackage[]{graphicx}\usepackage[]{color}
 %% maxwidth is the original width if it is less than linewidth
 %% otherwise use linewidth (to make sure the graphics do not exceed the margin)
 \makeatletter
@@ -126,6 +127,9 @@
   \titlepage
 \end{frame}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+Good morning and welcome to my brief introduction into modelling in the world of public health.
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {\unnumbered
@@ -133,11 +137,15 @@
   \tableofcontents
 \end{frame}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+}
 
 \section{Background}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Background}
 
+\textbf{Public Health} is ``[\ldots] the science and art of preventing disease, prolonging life and promoting human health [\ldots].'' -- Charles-Edward Amory Winslow \\
+\vspace{0.3cm}
 Infectious diseases are a serious \textbf{burden} for human health \\
 \vspace{0.3cm}
 \textbf{Loss of QUALYs} and also money \\ % quality-adjusted life year
@@ -149,18 +157,30 @@ Outbreaks vs endemic infection \\ % infection is constantly maintained at a base
 Different chains of \textbf{transmission}:
 \begin{figure}
   \flushleft
-  % \caption{Example of outbreak analytics workflow.}
   \includegraphics[width=0.85\textwidth,keepaspectratio]{disease-transmission_med.jpeg}
+  % https://ib.bioninja.com.au/higher-level/topic-11-animal-physiology/111-antibody-production-and/pathogenesis.html
 \end{figure}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \note{
-QUALY = quality-adjusted life year \\
-\vspace{0.3cm}
-many are preventable (vaccines) or curable\\
-\vspace{0.3cm}
-infection is constantly maintained at a baseline level in a geographic area without external inputs (steady state) / regularly found among particular people or in a certain area.
+Charles-Edward Amory Winslow - American \textbf{bacteriologist} and \textbf{public health expert 1920} \\
+\vspace{0.2cm}
+responsible for loss of QUALY = quality-adjusted life year -- sick leave, treatment \\
+\vspace{0.2cm}
+The most severe outcome is DEATH \\
+\vspace{0.2cm}
+many are preventable (vaccines or other interventions) or curable \\
+\vspace{0.2cm}
+outbreak: is the occurrence of disease cases in excess of normal expectancy \\
+\vspace{0.2cm}
+endemic: infection is constantly maintained at a baseline level in a geographic area without external inputs (steady state) \\
+\vspace{0.2cm}
+Direct contact: Plague \\
+Exchange of Fluids: HIV \\
+Contamination: Salmonella \\
+Airborne: Influenza \\
+Vector: TBE (FSME)
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -189,9 +209,10 @@ Austria, 2019, more than 130 cases up to this week
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \note{
-Flu: this time: not more than usual season (see also Spanish flu 1918), 10-15 weeks earlier then normal \\
+Flu: 2009 not more than usual season (see also Spanish flu 1918 with 20-50 Mio deaths), but unexpectedly early, 10-15 weeks earlier then normal \\
+AT: 1000 -- 4400 (2016/2017) deaths per season \\
 \vspace{0.3cm}
-Ebola: CFR up to 40\% \\
+Ebola (2015 strain): CFR up to 40--60\% \\
 \vspace{0.3cm}
 Measles EU: Romania, Lithuania, Italy, Poland, Bulgaria, Czech Republic, France, Greece, Slovakia
 }
@@ -233,6 +254,8 @@ Measles EU: Romania, Lithuania, Italy, Poland, Bulgaria, Czech Republic, France,
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \note{
+help to prioritise interventions \\
+\vspace{0.3cm}
 WHO elimination target for HIV-AIDS, Hepatitis C \\
 \vspace{0.3cm}
 mathematical models can help to assess potential threats and impacts early in the process, and later aid in interpreting data \\
@@ -250,6 +273,7 @@ WHO: over 30 new diseases emerged in the last 20 years
 \begin{figure}
   \flushleft
   \includegraphics[width=0.9\textwidth,keepaspectratio]{statistics2.png}
+  % https://medium.com/coinmonks/summarization-on-descriptive-statistics-6c9f89d07458
 \end{figure}
 \end{minipage}
 %%%%%%%%%%
@@ -290,9 +314,15 @@ Agent-based
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \note{
+Statistical: we will see an example for time series regression shortly \\
+\vspace{0.3cm}
+Stat models like Poisson used to calculate attack rates, risk rations, etc in Foodborne outbreaks \\
+\vspace{0.3cm}
 Dynamic models: origin is in the early 20th century \\
 \vspace{0.3cm}
-Modelling: higher influence with increasing computer power
+Modelling: higher influence with increasing computer power \\
+\vspace{0.3cm}
+Also used to predict the future (forecasts)
 }
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -318,7 +348,7 @@ Caused by \textit{\textbf{Streptococcus pneumoniae}} \par
 \vspace{0.25cm}
 Highest burden: \textbf{infants} and \textbf{elderly} \par % <2 and 50+, meningitis, bacterial pneumonia, sepsis
 \vspace{0.25cm}
-Pneumococcal conjugate \textbf{vaccine introduced} in 2012 in AT for children \par % covering 10 serotypes (PCV10), 3 doses in the first year
+\textbf{Vaccine introduced} in 2012 in AT for children \par % covering 10 serotypes (PCV10), 3 doses in the first year
 \end{minipage} \hfill
 \begin{minipage} {.39\textwidth}
 \begin{figure}
@@ -337,13 +367,15 @@ Pneumococcal conjugate \textbf{vaccine introduced} in 2012 in AT for children \p
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \note{
+Lets move on to the first example, the evaluation of an intervention on invasive pneumococcal disease \\
+\vspace{0.3cm}
 s. pneumoniae: bacteria \\
 \vspace{0.3cm}
-Serotypes: Only a small number account for IPD \\
+Serotypes: Only a small number cause severe disease like IPD \\
+\vspace{0.3cm}
+can result in: \textbf{meningitis, pneumonia, sepsis} \\
 \vspace{0.3cm}
 Risk: <2 and 50+ \\
-\vspace{0.3cm}
-can result in: meningitis, bacterial pneumonia, sepsis \\
 \vspace{0.3cm}
 vaccine: covering 10 serotypes (PCV10) \\
 \vspace{0.3cm}
@@ -411,6 +443,17 @@ x, &\text{if $x > 0$,}\\
 {\scriptsize \cite{richter2019}}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+GLM-related -- NB regression \\
+\vspace{0.3cm}
+2 segments \\
+\vspace{0.3cm}
+pre-, post-period \\
+\vspace{0.3cm}
+get an estimate (incl CI) for intervention effect \\
+\vspace{0.3cm}
+offset log(pop) to get incidence rate estimates
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{IPD -- Results}
@@ -421,10 +464,20 @@ x, &\text{if $x > 0$,}\\
   \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{richter2019_Fig3.png}
 \end{figure}
 \end{center}
+The vaccine type IPD was \textbf{reduced by 67\%} (95\% CI: 32\%; 84\%).
 \vfill
 {\scriptsize \cite{richter2019}}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+The vaccine type IPD was \textbf{reduced by} 58\% (95\% CI: 30\%; 74\%) and \textbf{67\%} (95\% CI: 32\%; 84\%) among <5 and $\ge$50 years old \\
+\vspace{0.3cm}
+Elderlies seem to benefit the most \\
+\vspace{0.3cm}
+Besides the direct effect (not shown), we also see a \textbf{herd effect}. \\
+\vspace{0.3cm}
+By taking action on one group, we also safe another (risk) group.
+}
 
 \section{Dynamic models}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -456,13 +509,28 @@ Dangerous for \textbf{foetuses and neonates} \par
   \caption{\textit{Aedes aegypti}}
   \centering
   \includegraphics[width=\textwidth,keepaspectratio]{Aedes_aegypti.jpg}
-  \subcaption*{\tiny Source: Muhammad Mahdi Karim, \url{https://commons.wikimedia.org/w/index.php?curid=9556152}}
+  \subcaption*{\tiny Source: Muhammad Mahdi Karim, Wikipedia}
 \end{figure}
 \end{minipage}
 
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+We continue with the second example -- a mathematical model of an outbreak: \\
+\vspace{0.3cm}
+Zika Virus is a \textbf{Vector born disease} \\
+\vspace{0.3cm}
+prevalent in South America, Africa, Asia \\
+\vspace{0.3cm}
+The WHO declared the Latin America Zika epidemic to be \textbf{Public Health Emergency of International Concern} in Feb 2016 \\
+\vspace{0.3cm}
+Summer Olympics: lots of worldwide travel \\
+\vspace{0.3cm}
+Policy suggestion/recommendation: delay pregnancy \\
+\vspace{0.3cm}
+To get better insight into this outbreak a mathematical model was developped
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Transmission model of Zika Virus} % source: https://www.reconlearn.org/post/practical-vbd.html
@@ -494,6 +562,11 @@ $E_v$    & Exposed vectors                                                      
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+here: a little simplification of the model \\
+\vspace{0.3cm}
+stratified by age - only one layer shown
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Transmission model of Zika Virus} % source: https://www.reconlearn.org/post/practical-vbd.html
@@ -527,10 +600,24 @@ $E_v$    & Exposed vectors                                                      
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+Write as the following system of ordinary differential equations \\
+\vspace{0.3cm}
+Parameters need to be estimated \\
+\vspace{0.3cm}
+either from \textbf{previous outbeaks, studies or data} \\
+\vspace{0.3cm}
+or from the outbreak itself (fit the model to current data) \\
+\vspace{0.3cm}
+$b$ ... biting rate \\
+$\beta$ ... probability of transmission \\
+$\mu$ ... mortality rate \\
+$\gamma$ ... recovery rate \\
+$N$ ... number of humans/vectors
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Zika Virus - Modelling Outcome} % source: https://www.reconlearn.org/post/practical-vbd.html
-% Policy suggestion/recommendation: delay pregnancy
 
 \begin{minipage}{.52\textwidth}
 \textbf{Herd immunity} after first epidemic  \par
@@ -546,7 +633,6 @@ Develop \textbf{new interventions} before new large-scale outbreaks occur
 \begin{minipage} {.45\textwidth}
 \begin{figure}
   \centering
-  % \caption{Example of outbreak analytics workflow.}
   \includegraphics[width=\textwidth,keepaspectratio]{Zika_results2.jpg}
   %\includegraphics[width=0.6\textwidth,keepaspectratio]{vaccination.jpg}
 \end{figure}
@@ -555,6 +641,17 @@ Develop \textbf{new interventions} before new large-scale outbreaks occur
 {\scriptsize \cite{ferguson2016}}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+Epidemic will re-occur when the reservoir of \textbf{susceptible} people grew big enough again \\
+\vspace{0.3cm}
+The outbreak ``moves'' spatially \\
+\vspace{0.3cm}
+intervention of mosquito control will reduce weekly infections \\
+\vspace{0.3cm}
+but smaller outbreaks likely to occur after \\
+\vspace{0.3cm}
+Also: less time between outbreaks (bc less people got infected and therefore higher amount of susceptible)
+}
 
 \section{Conclusion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -586,21 +683,25 @@ Hepatitis C elimination
 \end{minipage}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Conclusion}
 
 % We presented two examples of applied modelling \\
 % \vspace{0.3cm}
-Modelling plays an \textbf{increasingly important} role in helping to guide the most high \textbf{impact} and \textbf{cost-effective} preventions. \\
+Modelling \textbf{increasingly important} \\
 \vspace{0.3cm}
-It can be a \textbf{critical tool} for guiding public health action. \\
+Guide the most high \textbf{impact} and \textbf{cost-effective} preventions \\
 \vspace{0.3cm}
-Model limitations. \\ % (as other studies)
+\textbf{Critical tool} for public health action \\
 \vspace{0.3cm}
-Decision makers \textbf{benefit} - so does the population. \\
+Model limitations \\ % (as other studies)
 \vspace{0.3cm}
-Still a number of \textbf{challenges} in achieving a successful interface between modelling and public health actors.
+Decision makers \textbf{benefit} - so does the population \\
+\vspace{0.3cm}
+\textbf{Challenges} need to be solved
 
 % \begin{figure}
 %   \centering
@@ -609,6 +710,19 @@ Still a number of \textbf{challenges} in achieving a successful interface betwee
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+We presented two examples of applied modelling in public health \\
+\vspace{0.3cm}
+Modelling plays an \textbf{increasingly important} role in helping to guide the most high \textbf{impact} and \textbf{cost-effective} preventions. \\
+\vspace{0.3cm}
+Can be a \textbf{Critical tool} for guiding public health action.
+\vspace{0.3cm}
+Model limitations: as other studies / models simplify the real world \\
+\vspace{0.3cm}
+computer power is benefitial\\
+\vspace{0.3cm}
+Still a number of \textbf{challenges} in achieving a successful interface between modelling and public health actors.
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {\unnumbered
@@ -628,6 +742,11 @@ Still a number of \textbf{challenges} in achieving a successful interface betwee
 \end{center}
 \end{frame}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+Thank you for your attention, \\
+i wish you a nice and hot summer :) \\
+and i am happy to answer your questions
+}
 
 \nocite{polonsky2019}
 \nocite{serfling1967}
