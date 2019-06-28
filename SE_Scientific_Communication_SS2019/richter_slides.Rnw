@@ -47,8 +47,10 @@
   \begin{block}{#1}}{\end{block}}
   
 \setbeamercovered{invisible} % hide paused elements
-  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \graphicspath{{img/}}
 %\graphicspath{{../../chapters/figures/IPD/}, {../../chapters/figures/}}
 %\graphicspath{{D:/diss/chapters/figures/IPD/}} %{{\Sexpr{paste0(getwd(), "/chapters/figures/IPD/")}}} %{../figures/IPD/}
@@ -100,20 +102,20 @@ opts_chunk$set(concordance = TRUE,
 Good morning and welcome to my brief introduction into modelling in the world of public health.
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\unnumbered
-\begin{frame}[noframenumbering]{Content}
-  \tableofcontents
-\end{frame}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\note{
-}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% {\unnumbered
+% \begin{frame}[noframenumbering]{Content}
+%   \tableofcontents
+% \end{frame}}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \note{
+% }
 
 \section{Background}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Background}
 
-\textbf{Public Health} is ``[\ldots] the science and art of preventing disease, prolonging life and promoting human health [\ldots].'' -- Charles-Edward Amory Winslow \\
+\textbf{Public Health} is ``[\ldots] the science and art of preventing disease, prolonging life and promoting human health [\ldots].'' \\  %-- Charles-Edward Amory Winslow 
 \vspace{0.3cm}
 Infectious diseases are a serious \textbf{burden} for human health \\
 \vspace{0.3cm}
@@ -150,40 +152,6 @@ Exchange of Fluids: HIV \\
 Contamination: Salmonella \\
 Airborne: Influenza \\
 Vector: TBE (FSME)
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{
-\usebackgroundtemplate{\includegraphics[height=\paperheight]{outbreak.jpg}}%
-\setbeamercolor{frametitle}{bg=structure.fg!20!bg}%
-\begin{frame}[fragile]{Outbreaks}
-
-\begin{block} {Influenza pandemic ``swine flu''}
-Global, 2009--2010, 100,000 -- 400,000 deaths
-\end{block}
-\begin{block} {Ebola}
-% MERS-Cov (Middle-East Respiratory Syndrome) \\
-West Africa, 2014--2016, 11,000 deaths \\
-DRC, since 2018, 1,900 deaths
-\end{block}
-\begin{block} {Zika Virus}
-Brazil, 2015--2016, estimated 1 Mio cases in Brazil only and 2,000 confirmed severe complications in newborns
-\end{block}
-\begin{block} {Measles}
-Europe, 2019, ca. 6,300 cases from Jan--Apr \\ % Romania, Lithuania, Italy, Poland, Bulgaria, Czech Republic, France, Greece, Slovakia
-Austria, 2019, more than 130 cases up to this week
-\end{block}
-
-\end{frame}
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\note{
-Flu: 2009 not more than usual season (see also Spanish flu 1918 with 20-50 Mio deaths), but unexpectedly early, 10-15 weeks earlier then normal \\
-AT: 1000 -- 4400 (2016/2017) deaths per season \\
-\vspace{0.3cm}
-Ebola (2015 strain): CFR up to 40--60\% \\
-\vspace{0.3cm}
-Measles EU: Romania, Lithuania, Italy, Poland, Bulgaria, Czech Republic, France, Greece, Slovakia
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -247,9 +215,9 @@ WHO: over 30 new diseases emerged in the last 20 years
 \end{minipage}
 %%%%%%%%%%
 \begin{minipage}{.49\textwidth}
-Descriptive \par
+\textbf{Regression} \par
 \vspace{0.1cm}
-Regression \par
+Descriptive \par
 \vspace{0.1cm}
 Bayesian statistics \par
 \vspace{0.1cm}
@@ -267,7 +235,7 @@ Spatial models
 \end{minipage} \hfill %\par\vspace{0.5cm}
 %%%%%%%%%%
 \begin{minipage}{.49\textwidth}
-Dynamic, compartmental (SIR) \par % origin is in the early 20th century
+\textbf{Dynamic}, compartmental (SIR) \par % origin is in the early 20th century
 \vspace{0.1cm}
 Stochastic - Markov chain \par
 \vspace{0.1cm}
@@ -294,17 +262,6 @@ Modelling: higher influence with increasing computer power \\
 Also used to predict the future (forecasts)
 }
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}[fragile]{Example of outbreak analytics workflow.}
-% \begin{center}
-% \begin{figure}
-%   \centering
-%   % \caption{Example of outbreak analytics workflow.}
-%   \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{polonsky2019_Fig2.png}
-% \end{figure}
-% \end{center}
-% \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Statistical models}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -597,7 +554,9 @@ An epidemic will last about 3-5 yrs \par
 \vspace{0.1cm}
 \hspace*{0.5cm}Shorter on local scale: 6 months \par
 \vspace{0.3cm}
-Develop \textbf{new interventions} before new large-scale outbreaks occur
+\textbf{Intervention} on mosquitoes has also negative effects \par
+\hspace*{0.5cm} Outbreak lasts longer \par
+\hspace*{0.5cm} Less time between epidemics
 \end{minipage} \hfill
 \begin{minipage} {.45\textwidth}
 \begin{figure}
@@ -622,39 +581,9 @@ but smaller outbreaks likely to occur after \\
 Also: less time between outbreaks (bc less people got infected and therefore higher amount of susceptible)
 }
 
-\section{Conclusion}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}[fragile]{Other Applications}
-% \begin{minipage}{.4\textwidth}
-% \begin{variableblock}{}{}{} \centering
-% Sexually transmitted infections (STI)
-% \end{variableblock} \par \vspace{.7cm}
-% \begin{variableblock}{}{}{} \centering
-% Ebola
-% \end{variableblock} \par \vspace{.7cm}
-% \begin{variableblock}{}{}{} \centering
-% Malaria
-% \end{variableblock}
-% \end{minipage} \hspace{1cm}
-% \begin{minipage}{.4\textwidth}
-% \begin{variableblock}{}{}{} \centering
-% Influenza mortality \nocite{nielsen2019} \\
-% \end{variableblock} \par \vspace{.7cm}
-% \begin{variableblock}{}{}{} \centering
-% Foodborne outbreaks % to identify the source of infection (poisson model)
-% \end{variableblock} \par \vspace{.7cm}
-% \begin{variableblock}{}{}{} \centering
-% Tuberculosis
-% \end{variableblock} \par \vspace{.7cm}
-% \begin{variableblock}{}{}{} \centering
-% Hepatitis C elimination
-% \end{variableblock}
-% \end{minipage}
-% \end{frame}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \note{
-% }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{Conclusion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]{Conclusion}
 
@@ -732,7 +661,104 @@ and i am happy to answer your questions
 \end{frame}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\unnumbered
+\begin{frame}[noframenumbering]{}
+\begin{center}
+\begin{block}{}
+\centering
+{\Huge \textbf{Backup Slides}}
+\end{block}
+\end{center}
+\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+{
+\usebackgroundtemplate{\includegraphics[height=\paperheight]{outbreak.jpg}}%
+\setbeamercolor{frametitle}{bg=structure.fg!20!bg}%
+\unnumbered
+\begin{frame}[fragile,noframenumbering]{Outbreaks}
+
+\begin{block} {Influenza pandemic ``swine flu''}
+Global, 2009--2010, 100,000 -- 400,000 deaths
+\end{block}
+\begin{block} {Ebola}
+% MERS-Cov (Middle-East Respiratory Syndrome) \\
+West Africa, 2014--2016, 11,000 deaths \\
+DRC, since 2018, 1,900 deaths
+\end{block}
+\begin{block} {Zika Virus}
+Brazil, 2015--2016, estimated 1 Mio cases in Brazil only and 2,000 confirmed severe complications in newborns
+\end{block}
+\begin{block} {Measles}
+Europe, 2019, ca. 6,300 cases from Jan--Apr \\ % Romania, Lithuania, Italy, Poland, Bulgaria, Czech Republic, France, Greece, Slovakia
+Austria, 2019, more than 130 cases up to this week
+\end{block}
+
+\end{frame}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+Flu: 2009 not more than usual season (see also Spanish flu 1918 with 20-50 Mio deaths), but unexpectedly early, 10-15 weeks earlier then normal \\
+AT: 1000 -- 4400 (2016/2017) deaths per season \\
+\vspace{0.3cm}
+Ebola (2015 strain): CFR up to 40--60\% \\
+\vspace{0.3cm}
+Measles EU: Romania, Lithuania, Italy, Poland, Bulgaria, Czech Republic, France, Greece, Slovakia
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{
+\unnumbered
+\begin{frame}[fragile,noframenumbering]{Other Applications}
+\begin{minipage}{.4\textwidth}
+\begin{variableblock}{}{}{} \centering
+Sexually transmitted infections (STI)
+\end{variableblock} \par \vspace{.7cm}
+\begin{variableblock}{}{}{} \centering
+Ebola
+\end{variableblock} \par \vspace{.7cm}
+\begin{variableblock}{}{}{} \centering
+Malaria
+\end{variableblock}
+\end{minipage} \hspace{1cm}
+\begin{minipage}{.4\textwidth}
+\begin{variableblock}{}{}{} \centering
+Influenza mortality \nocite{nielsen2019} \\
+\end{variableblock} \par \vspace{.7cm}
+\begin{variableblock}{}{}{} \centering
+Foodborne outbreaks % to identify the source of infection (poisson model)
+\end{variableblock} \par \vspace{.7cm}
+\begin{variableblock}{}{}{} \centering
+Tuberculosis
+\end{variableblock} \par \vspace{.7cm}
+\begin{variableblock}{}{}{} \centering
+Hepatitis C elimination
+\end{variableblock}
+\end{minipage}
+\end{frame}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{
+\unnumbered
+\begin{frame}[fragile,noframenumbering]{Example of outbreak analytics workflow.}
+\begin{center}
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{polonsky2019_Fig2.png}
+\end{figure}
+\end{center}
+\end{frame}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\note{
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
 
 
