@@ -1,0 +1,66 @@
+\usepackage[ngerman,english]{babel}
+\usepackage{lmodern} % schrift besser lesbar
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{comment}
+
+\usepackage{amsmath, amsthm}
+\usepackage{amssymb}
+\usepackage{bbm} % "Blackboard-style" cm fonts
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{subcaption}
+\usepackage[customcolors,shade]{hf-tikz}
+
+\usepackage{multirow} % extension of tabular environment
+
+\usepackage{longtable,booktabs,array}
+% 
+% \usepackage[backend = bibtex, natbib = true, style = numeric, sorting = none, citestyle = authoryear]{biblatex}
+% \addbibresource{bib/my_diss_bib.bib}
+% 
+% \usepackage{natbib}
+% \bibliographystyle{plain}
+% \bibliography{my_bib}
+
+\usetheme{Boadilla}
+
+%\definecolor{ages}{RGB}{204,164,0}
+%\usecolortheme[named=ages]{structure}
+
+\setbeamertemplate{blocks}[rounded][shadow=false]
+% \setbeamercolor{frametitle}{bg=structure.fg!20!bg}
+\setbeamercovered{transparent}
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{footline}[frame number]
+
+\newcommand\numbered{\setbeamertemplate{footline}[frame number]}
+\newcommand\unnumbered{\setbeamertemplate{footline}{}}
+
+
+\newcommand{\Sin}[1]{\sin\left(#1\right)}%
+\newcommand{\Cos}[1]{\cos\left(#1\right)}%
+\newcommand{\Log}[1]{\log\left(#1\right)}%
+\newcommand{\mli}[1]{\mathit{#1}}% MulitLetterIdentifier - produces nice names for multi character variables in math environments
+
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}} % Right alignment in p{} environment
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}} % center alignment in p{} environment
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+
+% generate block with different colour
+\newenvironment{variableblock}[3]{%
+\setbeamercolor{block body}{#2}
+\setbeamercolor{block title}{#3}
+\begin{block}{#1}}{\end{block}}
+
+\setbeamercovered{invisible} % hide paused elements
+
+\titlegraphic{
+  \includegraphics[width=2.0cm]{logo_ages}\hspace*{3cm}~%
+  \includegraphics[width=2.0cm]{logo_tugraz}
+}
+% define how "R" is displayed
+\newcommand{\R}{\textsf{R}}
+
+
